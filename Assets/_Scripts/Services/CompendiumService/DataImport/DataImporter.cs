@@ -87,5 +87,15 @@ namespace Demo.Core
             IEnumerable<LoadedData> matchingFiles = _loadedData.Where(data => data.EntityTag.Equals(entityTag.ToLower()));
             return matchingFiles;
         }
+        
+        /// <summary>
+        /// 利用JsonEntityParser解析json数据
+        /// </summary>
+        /// <returns></returns>
+        public List<IEntity> HandleLoadedData()
+        {
+            List<IEntity> entities = JsonEntityParser.ParseData(_loadedData) as List<IEntity>;
+            return entities;
+        }
     }
 }
