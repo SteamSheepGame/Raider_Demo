@@ -1,10 +1,12 @@
 using UnityEngine;
 
+using System.Collections.Generic;
+
 namespace Demo.Core
 {
-    public class ViewManager : MonoBehaviour
+    public class UIManager : MonoBehaviour
     {
-       private static ViewManager _instance; 
+       private static UIManager _instance; 
 
        [SerializeField] private View startingview;
 
