@@ -4,23 +4,25 @@ using System.Collections.Generic;
 
 namespace Demo.Core
 {
-    public class UIManager : MonoBehaviour
+    public class UIManager : Singleton<UIManager>
     {
-       //single instance of UIManager for each scene
        private static UIManager _instance; 
 
        [SerializeField] private View startingview;
 
-       //List of Views in scene
+       ///List of Views in scene
        [SerializeField] private View[] views; 
 
        private View currentview;
 
+       ///Happen Once
        private readonly Stack<View> History = new Stack<View>();  
 
-       private void Awake() => _instance = this;
+       protected override void Awake() => _instance = this;
 
-        //Search View of the specified type
+        /// <summary>
+        /// Search View of the specified type
+        /// </summary>
         public static T GetViews<T>() where T : View
         {
             for (int i = 0; i < _instance.views.Length; i++)
@@ -33,7 +35,10 @@ namespace Demo.Core
             return null;
         }
 
-        //Display View
+        /// <summary>
+        ///Display View
+        /// </summary>
+        /// <param name="remember"></param>
         public static void Show<T>(bool remember = true) where T:View
         {
             for (int i = 0; i < _instance.views.Length; i++)
@@ -57,8 +62,11 @@ namespace Demo.Core
                }
             }
         }
-
-        //Display View
+        /// <summary>
+        ///Display View
+        /// </summary>
+        /// <param name="remember"></param>
+        /// <param name="remember"></param>
         public static void Show(View view, bool remember = true)
         {
             if (_instance.currentview != null)
@@ -75,8 +83,9 @@ namespace Demo.Core
 
             _instance.currentview = view;
         }
-
-        //Return to previous view
+        /// <summary>
+        ///Return to previous view
+        /// </summary>
         public static void ShowLast()
         {
             if(_instance.History.Count != 0)

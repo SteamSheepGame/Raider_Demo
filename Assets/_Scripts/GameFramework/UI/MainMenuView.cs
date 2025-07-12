@@ -9,7 +9,7 @@ using UnityEngine.UI;
 namespace Demo.Core
 {
 
-    //Test
+    ///Test
     public class MainMenuView : View
     {
         [SerializeField] private Button _settingButton;
