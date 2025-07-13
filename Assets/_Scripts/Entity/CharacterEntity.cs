@@ -6,12 +6,12 @@ namespace Demo.Core
     public class CharacterEntity : IEntity
     {
         public string Id { get; set; }
-        public string Label;
-        public string Aspect;
-        public string Image;
-        public string Description;
+        public string Label { get; set; }
+        public string Aspect { get; set; }
+        public string Image { get; set; }
+        public string Description { get; set; }
 
-        public CharacterAttributes Attributes;
+        public CharacterAttributes Attributes { get; set; }
     }
 
     [Serializable]
