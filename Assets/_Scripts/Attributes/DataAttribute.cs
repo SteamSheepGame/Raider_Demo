@@ -9,7 +9,6 @@ namespace Demo.Core
     public class DataImportable : Attribute
     {
         public string Tag { get; }
-
         public DataImportable(string tag)
         {
             Tag = tag.ToLower();
