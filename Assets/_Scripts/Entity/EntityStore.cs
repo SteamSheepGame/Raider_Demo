@@ -44,5 +44,14 @@ namespace Demo.Core
         {
             return _entities[id];
         }
+        
+        /// <summary>
+        /// 返回全部Entity
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<IEntity> GetAllEntities()
+        {
+            return _entities.Values;
+        }
     }
 }
