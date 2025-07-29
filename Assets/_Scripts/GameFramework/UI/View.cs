@@ -1,106 +1,146 @@
+﻿using System.Collections.Generic;
+
 using UnityEngine;
 
-using System.Collections.Generic;
 
 namespace Demo.Core
 {
+
     public class View : Singleton<View>, IView
     {
 
-       [SerializeField] private IView startingview;
+        [SerializeField] private List<GameObject> viewObjects; //List of UI referenced at runtime
 
-       //List of Views in scene
-       [SerializeField] private IView[] views; 
+        [SerializeField] private bool enableLazyLoad = true;
 
-       private IView currentview;
+        [SerializeField] private GameObject initialView;
 
-        public void Show()
-        {
-            gameObject.SetActive(true);
-            Debug.Log("View shown.");
-        }
+        [SerializeField] private string resourceFolder = "UI/Views"; //path for lazy load ui prefabs
 
-        public void Hide()
-        {
-            gameObject.SetActive(false);
-            Debug.Log("View hidden.");
-        }
-
-        public void InitializeView()
-        {
-            for (int i = 0; i < views.Length; i++)
-            {
-                views[i].InitializeView();
-
-                views[i].Hide();
-            }
-
-            if (startingview != null)
-            {
-                Show(startingview, true);
-            }
-        }
 
         /// <summary>
-        /// Search View of the specified type
+        /// “MainMenu”：MainMenuPanel GameObject
         /// </summary>
-        public T GetViews<T>() where T : IView
-        {
-            for (int i = 0; i < this.views.Length; i++)
-            {
-                if(this.views[i] is T tView)
-               {
-                    return tView;
-               }
-            }
-            return default(T);
-        }
+        private readonly Dictionary<string, GameObject> _views = new(); 
 
-        /// <summary>
-        ///Display View
-        /// </summary>
-        /// <param name="remember"></param>
-        public void Show<T>(bool remember = true) where T:IView
+        protected override void Initialize()
         {
-            for (int i = 0; i < this.views.Length; i++)
+            base.Initialize();   /// Calls Singleton<T>.Initialize()
+            _views.Clear();
+
+            foreach (var view in viewObjects)
             {
-                if (this.views[i] is T)
-               {
-                    if (this.currentview != null)
+                if (view != null)
+                {
+                    _views[view.name] = view;
+                    if (view.name != initialView.name)
                     {
-
-                        this.currentview.Hide();
+                        Debug.Log($"[View] name is {_views[view.name]} views.");
+                        view.SetActive(false);
                     }
-
-                    this.views[i].Show();
-
-                    this.currentview = this.views[i];
-
-               }
+                    
+                }
             }
+            Debug.Log($"[View] Initialized with {_views.Count} views.");
+        }
+
+        /// <summary>
+        /// Find and show view by name, if not found lazy-load it
+        /// Activate View once found
+        /// </summary>
+        /// <param name="viewName"></param>
+        public void ShowView(string viewName)
+        {
+            if (!_views.TryGetValue(viewName, out var view))
+            {
+                if (enableLazyLoad)
+                {
+                    var loaded = LoadAndRegisterView(viewName);
+                    if (loaded != null)
+                    {
+                        view = loaded;
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"[View] View '{viewName}' not found.");
+                        return;
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning($"[View] View '{viewName}' not found.");
+                    return;
+                }
+            }
+
+            view.SetActive(true);
+        }
+
+        /// <summary>
+        /// “MainMenu”：MainMenuPanel GameObject
+        /// </summary>
+        /// <param name="viewName"></param>
+        public void HideView(string viewName)
+        {
+            if (_views.TryGetValue(viewName, out var view))
+            {
+                view.SetActive(false);
+            }
+            else
+            {
+                Debug.LogWarning($"[View] View '{viewName}' not found.");
+            }
+        }
+
+        /// <summary>
+        /// Generic overload of ShowView()
+        /// </summary>
+        /// <param name="viewName"></param>
+        public void ShowView<T>() where T : Component
+        {
+            string typeName = typeof(T).Name;
+
+            if (!_views.TryGetValue(typeName, out var view))
+            {
+                if (enableLazyLoad)
+                {
+                    view = LoadAndRegisterView(typeName);
+                }
+
+                if (view == null)
+                {
+                    Debug.LogWarning($"[View] View of type '{typeName}' not found.");
+                    return;
+                }
+            }
+
+            view.SetActive(true);
         }
         /// <summary>
-        ///Display View
+        /// Lazy Loading View
         /// </summary>
-        /// <param name="remember"></param>
-        /// <param name="remember"></param>
-        public void Show(IView view, bool remember = true)
+        /// <param name="viewName"></param>
+        private GameObject LoadAndRegisterView(string viewName)
         {
-            if (this.currentview != null)
+            string path = string.IsNullOrEmpty(resourceFolder)
+                ? viewName  ///use viewName directly if empty
+                : $"{resourceFolder}/{viewName}"; ///construct full path
+
+            var prefab = Resources.Load<GameObject>(path);
+            Debug.Log($"[Path] Current path at {path}");
+
+            if (prefab == null)
             {
-                this.currentview.Hide();
+                Debug.LogWarning($"[View] Could not load prefab at {path}");
+                return null;
             }
 
-            view.Show();
-
-            this.currentview = view;
+            Transform canvas = FindFirstObjectByType<Canvas>()?.transform ?? transform;  ///prefab parented under canvas
+            var instance = Instantiate(prefab, canvas);
+            instance.name = prefab.name; /// Remove (Clone)
+            _views[instance.name] = instance;
+            instance.SetActive(false); /// Hide until requested
+            return instance;
         }
-
-
-        public void UpdateView()
-        {
-            Debug.Log("View updated.");
-        }
-
     }
 }

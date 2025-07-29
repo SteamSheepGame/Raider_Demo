@@ -4,12 +4,12 @@ namespace Demo.Core
 {
     public interface IView
     {
-        void InitializeView();
+        //void Initialize();
 
-        void Hide();
+        void ShowView(string viewName);
 
-        void Show();
+        void HideView(string viewName);
 
-        void UpdateView();
+        void ShowView<T>() where T : Component;
     }
 }
