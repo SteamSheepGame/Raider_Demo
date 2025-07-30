@@ -4,7 +4,6 @@ namespace Demo.Core
 {
     public interface IView
     {
-        //void Initialize();
 
         void ShowView(string viewName);
 

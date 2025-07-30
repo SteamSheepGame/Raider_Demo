@@ -21,7 +21,7 @@ namespace Demo.Core
         /// <summary>
         /// “MainMenu”：MainMenuPanel GameObject
         /// </summary>
-        private readonly Dictionary<string, GameObject> _views = new(); 
+        private readonly Dictionary<string, GameObject> _views = new();
 
         protected override void Initialize()
         {
@@ -33,6 +33,7 @@ namespace Demo.Core
                 if (view != null)
                 {
                     _views[view.name] = view;
+
                     if (view.name != initialView.name)
                     {
                         Debug.Log($"[View] name is {_views[view.name]} views.");
@@ -72,12 +73,11 @@ namespace Demo.Core
                     return;
                 }
             }
-
             view.SetActive(true);
         }
 
         /// <summary>
-        /// “MainMenu”：MainMenuPanel GameObject
+        /// Hide View, if view.tag == TempView it will destroy gmaeObject
         /// </summary>
         /// <param name="viewName"></param>
         public void HideView(string viewName)
@@ -85,6 +85,13 @@ namespace Demo.Core
             if (_views.TryGetValue(viewName, out var view))
             {
                 view.SetActive(false);
+                if (view.tag == "TempView")
+                {
+                    Debug.Log($"{view.name} is removed from scene.");
+                    _views.Remove(viewName);
+                    Destroy(view);
+                    
+                }
             }
             else
             {
@@ -117,7 +124,7 @@ namespace Demo.Core
             view.SetActive(true);
         }
         /// <summary>
-        /// Lazy Loading View
+        /// Lazy Loading View, attach inactivatetimer to instance
         /// </summary>
         /// <param name="viewName"></param>
         private GameObject LoadAndRegisterView(string viewName)
@@ -140,7 +147,9 @@ namespace Demo.Core
             instance.name = prefab.name; /// Remove (Clone)
             _views[instance.name] = instance;
             instance.SetActive(false); /// Hide until requested
+
             return instance;
         }
+
     }
 }
