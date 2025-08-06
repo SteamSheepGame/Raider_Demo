@@ -5,24 +5,24 @@ using UnityEngine.UI;
 namespace Demo.Core
 {
 
-    public class ViewTest : MonoBehaviour
+    public class UITest : MonoBehaviour
     {
-        [SerializeField] private Button _next;
-
-        private void Start()
+        private void Update()
         {
-            if (_next != null)
-            {
-                _next.onClick.AddListener(() =>
-                {
-                    View.Instance.ShowView("Test 2");
-                    View.Instance.HideView("Test 1");
-                });
-                
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+                UIManager.Instance.ShowViewOnCanvas("MainGameplayCanvas", "Verb");
 
-            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+                UIManager.Instance.ShowViewOnCanvas("MainGameplayCanvas", "Lore");
+
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+                UIManager.Instance.ShowViewOnCanvas("PopupCanvas", "DetailPopup");
+
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+                UIManager.Instance.ShowViewOnCanvas("OverlayCanvas", "Notification");
+
+            if (Input.GetKeyDown(KeyCode.C))
+                UIManager.Instance.HideCanvas("PopupCanvas");
         }
-
-
     }
 }

@@ -1,31 +1,24 @@
 ﻿using System.Collections.Generic;
-
 using UnityEngine;
-
 
 namespace Demo.Core
 {
-
-    public class View : Singleton<View>, IView
+    public class View : MonoBehaviour, IView
     {
-
-        [SerializeField] private List<GameObject> viewObjects; //List of UI referenced at runtime
-
+        [SerializeField] private List<GameObject> viewObjects; // Panels inside this canvas
         [SerializeField] private bool enableLazyLoad = true;
-
         [SerializeField] private GameObject initialView;
+        [SerializeField] private string resourceFolder = "UI/Views"; 
 
-        [SerializeField] private string resourceFolder = "UI/Views"; //path for lazy load ui prefabs
-
-
-        /// <summary>
-        /// “MainMenu”：MainMenuPanel GameObject
-        /// </summary>
         private readonly Dictionary<string, GameObject> _views = new();
 
-        protected override void Initialize()
+        private void Awake()
         {
-            base.Initialize();   /// Calls Singleton<T>.Initialize()
+            Initialize();
+        }
+
+        private void Initialize()
+        {
             _views.Clear();
 
             foreach (var view in viewObjects)
@@ -34,75 +27,59 @@ namespace Demo.Core
                 {
                     _views[view.name] = view;
 
-                    if (view.name != initialView.name)
-                    {
-                        Debug.Log($"[View] name is {_views[view.name]} views.");
+                    if (initialView == null || view.name != initialView.name)
                         view.SetActive(false);
-                    }
-                    
                 }
             }
-            Debug.Log($"[View] Initialized with {_views.Count} views.");
+
+            Debug.Log($"[View] Initialized with {_views.Count} views on canvas '{gameObject.name}'.");
         }
 
-        /// <summary>
-        /// Find and show view by name, if not found lazy-load it
-        /// Activate View once found
+         /// <summary>
+        /// Show a view. If not found and lazy load enabled, load it from Resources.
+        /// Does NOT hide other views.
         /// </summary>
-        /// <param name="viewName"></param>
         public void ShowView(string viewName)
         {
             if (!_views.TryGetValue(viewName, out var view))
             {
                 if (enableLazyLoad)
+                    view = LoadAndRegisterView(viewName);
+
+                if (view == null)
                 {
-                    var loaded = LoadAndRegisterView(viewName);
-                    if (loaded != null)
-                    {
-                        view = loaded;
-                    }
-                    else
-                    {
-                        Debug.LogWarning($"[View] View '{viewName}' not found.");
-                        return;
-                    }
-                }
-                else
-                {
-                    Debug.LogWarning($"[View] View '{viewName}' not found.");
+                    Debug.LogWarning($"[View] View '{viewName}' not found in canvas '{name}'.");
                     return;
                 }
             }
+
             view.SetActive(true);
         }
 
         /// <summary>
-        /// Hide View, if view.tag == TempView it will destroy gmaeObject
+        /// Hide a specific view. Will destroy if tagged "TempView".
         /// </summary>
-        /// <param name="viewName"></param>
         public void HideView(string viewName)
         {
             if (_views.TryGetValue(viewName, out var view))
             {
                 view.SetActive(false);
-                if (view.tag == "TempView")
+
+                if (view.CompareTag("TempView"))
                 {
-                    Debug.Log($"{view.name} is removed from scene.");
                     _views.Remove(viewName);
                     Destroy(view);
-                    
                 }
             }
             else
             {
-                Debug.LogWarning($"[View] View '{viewName}' not found.");
+                Debug.LogWarning($"[View] View '{viewName}' not found in canvas '{name}'.");
             }
         }
 
         /// <summary>
-        /// Generic overload of ShowView()
+        /// Show a view by type name.
         /// </summary>
-        /// <param name="viewName"></param>
         public void ShowView<T>() where T : Component
         {
             string typeName = typeof(T).Name;
@@ -110,31 +87,34 @@ namespace Demo.Core
             if (!_views.TryGetValue(typeName, out var view))
             {
                 if (enableLazyLoad)
-                {
                     view = LoadAndRegisterView(typeName);
-                }
 
                 if (view == null)
                 {
-                    Debug.LogWarning($"[View] View of type '{typeName}' not found.");
+                    Debug.LogWarning($"[View] View of type '{typeName}' not found in canvas '{name}'.");
                     return;
                 }
             }
 
             view.SetActive(true);
         }
+
         /// <summary>
-        /// Lazy Loading View, attach inactivatetimer to instance
+        /// Hide all views in this canvas (useful for resetting UI).
         /// </summary>
-        /// <param name="viewName"></param>
+        public void HideAllViews()
+        {
+            foreach (var view in _views.Values)
+                view.SetActive(false);
+        }
+
         private GameObject LoadAndRegisterView(string viewName)
         {
             string path = string.IsNullOrEmpty(resourceFolder)
-                ? viewName  ///use viewName directly if empty
-                : $"{resourceFolder}/{viewName}"; ///construct full path
+                ? viewName
+                : $"{resourceFolder}/{viewName}";
 
             var prefab = Resources.Load<GameObject>(path);
-            Debug.Log($"[Path] Current path at {path}");
 
             if (prefab == null)
             {
@@ -142,14 +122,12 @@ namespace Demo.Core
                 return null;
             }
 
-            Transform canvas = FindFirstObjectByType<Canvas>()?.transform ?? transform;  ///prefab parented under canvas
-            var instance = Instantiate(prefab, canvas);
-            instance.name = prefab.name; /// Remove (Clone)
+            var instance = Instantiate(prefab, transform);
+            instance.name = prefab.name;
             _views[instance.name] = instance;
-            instance.SetActive(false); /// Hide until requested
+            instance.SetActive(false);
 
             return instance;
         }
-
     }
 }
