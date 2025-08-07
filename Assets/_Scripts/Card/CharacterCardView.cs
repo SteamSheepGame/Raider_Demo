@@ -5,9 +5,10 @@ namespace Demo.Core
 {
     public class CharacterCardView: MonoBehaviour, ICardView
     {
+		// Marked for change
         public bool IsDraggable { get; set; }
         public bool IsSelected { get; set; }
-        public IEntity _entity { get; private set;}
+        public IEntity Entity { get; private set;}
         
         /// <summary>
         /// 与entity类链接
@@ -15,14 +16,14 @@ namespace Demo.Core
         /// <param name="entity"></param>
         public void bind(IEntity entity)
         {
-            _entity = entity;
+            Entity = entity;
             
             // Testing
             displayTest();
         }
         
         /// <summary>
-        /// Testing
+        /// Testing (Will be removed later)
         /// </summary>
         public void displayTest()
         {
@@ -31,7 +32,7 @@ namespace Demo.Core
             textObj.transform.SetParent(this.transform);
 
             var text = textObj.AddComponent<TextMeshProUGUI>();
-            text.text = (_entity as CharacterEntity)?.Label;
+            text.text = (Entity as CharacterEntity)?.Label;
             text.fontSize = 24;
             text.alignment = TextAlignmentOptions.Center;
 

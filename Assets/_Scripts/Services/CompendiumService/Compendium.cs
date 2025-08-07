@@ -13,17 +13,17 @@ namespace Demo.Core
         /// <summary>
         /// Key: 类名；Value: 实体存储库。例如 Element ： ElementStore
         /// </summary>
-        [OdinSerialize] [ReadOnly] private Dictionary<Type, EntityStore> _stores;
+        [OdinSerialize] [ReadOnly] private Dictionary<Type, EntityStoreService> _stores;
         
         public void InitializeEntityData(IEnumerable<Type> dataTypes)
         {
-            _stores = new Dictionary<Type, EntityStore>();
+            _stores = new Dictionary<Type, EntityStoreService>();
 
             foreach (Type dataType in dataTypes)
             {
                 if (dataType.IsAssignableFrom(typeof(IEntity)))
                 {
-                   _stores.Add(dataType, new EntityStore());
+                   _stores.Add(dataType, new EntityStoreService());
                 }
             }
         }

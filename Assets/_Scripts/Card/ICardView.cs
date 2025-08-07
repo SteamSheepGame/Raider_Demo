@@ -2,7 +2,8 @@
 {
     public interface ICardView
     {
-        IEntity _entity { get; }
+        IEntity Entity { get; }
+		// Marked for change
         public bool IsDraggable { get; set; }
         public bool IsSelected { get; set; }
 

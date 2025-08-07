@@ -14,13 +14,14 @@ namespace Demo.Core
             dtImporter.LoadDataFromAssignedFolder();
             
             // Store entities inside EntityStore
-            EntityStore store = new EntityStore();
-            store.HandleImportData(dtImporter);
+            ServiceProvider.Instance.RegisterService<IEntityStoreService>(new EntityStoreService());
+            IEntityStoreService storeService = ServiceProvider.Instance.GetService<IEntityStoreService>();
+            storeService.HandleImportData(dtImporter);
             
             // Init FactoryRegistry
             CardFactoryRegistry.Register<CharacterEntity>(new CharacterCardFactory(cardPrefab));
             // Create Card for each entity in 
-            foreach (IEntity entity in store.GetAllEntities())
+            foreach (IEntity entity in storeService.GetAllEntities())
             {
                 if (entity is CharacterEntity)
                 {
