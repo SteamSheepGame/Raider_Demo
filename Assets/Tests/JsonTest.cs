@@ -14,11 +14,11 @@ namespace Demo.Core
             dtImporter.LoadDataFromAssignedFolder();
             
             // Store entities inside EntityStore
-            EntityStore store = new EntityStore();
-            store.HandleImportData(dtImporter);
+            EntityStoreService storeService = new EntityStoreService();
+            storeService.HandleImportData(dtImporter);
             
             // Test entity
-            IEntity entity = store.GetEntity("1234");
+            IEntity entity = storeService.GetEntity("1234");
             Assert.IsInstanceOf<CharacterEntity>(entity);
             
             CharacterEntity character = (CharacterEntity)entity;
