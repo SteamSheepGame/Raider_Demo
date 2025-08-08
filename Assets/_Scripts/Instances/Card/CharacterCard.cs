@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using Sirenix.Serialization;
+using UnityEngine;
 using TMPro;
 
 namespace Demo.Core
 {
-    public class CharacterCardView: MonoBehaviour, ICardView
+    public class CharacterCard: SerializedMonoBehaviour, ICard
     {
 		// Marked for change
         public bool IsDraggable { get; set; }
@@ -14,18 +16,18 @@ namespace Demo.Core
         /// 与entity类链接
         /// </summary>
         /// <param name="entity"></param>
-        public void bind(IEntity entity)
+        public void Bind(IEntity entity)
         {
             Entity = entity;
             
             // Testing
-            displayTest();
+            DisplayTest();
         }
         
         /// <summary>
         /// Testing (Will be removed later)
         /// </summary>
-        public void displayTest()
+        private void DisplayTest()
         {
             // Testing
             GameObject textObj = new GameObject("NameText");

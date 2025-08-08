@@ -18,14 +18,17 @@ namespace Demo.Core
             IEntityStoreService storeService = ServiceProvider.Instance.GetService<IEntityStoreService>();
             storeService.HandleImportData(dtImporter);
             
-            // Init FactoryRegistry
-            CardFactoryRegistry.Register<CharacterEntity>(new CharacterCardFactory(cardPrefab));
+            // Init FactoryService
+            ServiceProvider.Instance.RegisterService<IFactoryService>(new FactoryService());
+            IFactoryService factoryService = ServiceProvider.Instance.GetService<IFactoryService>();
+            //Register Factory
+            factoryService.Register<CharacterEntity>(new CharacterCardFactory(cardPrefab));
             // Create Card for each entity in 
             foreach (IEntity entity in storeService.GetAllEntities())
             {
                 if (entity is CharacterEntity)
                 {
-                    var card = CardFactoryRegistry.CreateCard(entity);
+                    factoryService.Create(entity);
                 }
             }
         }

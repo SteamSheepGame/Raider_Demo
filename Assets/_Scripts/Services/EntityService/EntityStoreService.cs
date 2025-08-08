@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using PlasticGui.Configuration.CloudEdition;
 
 namespace Demo.Core
 {
