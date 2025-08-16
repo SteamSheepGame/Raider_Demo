@@ -1,14 +1,13 @@
-using UnityEngine;
-
 namespace Demo.Core
 {
     public interface IView
     {
+        string ViewName { get; }
+        bool IsVisible { get; }
 
-        void ShowView(string viewName);
-
-        void HideView(string viewName);
-
-        void ShowView<T>() where T : Component;
+        void Show(string panelName, bool exclusive = false, bool bringToFront = true);
+        void Hide(string panelName = null);
+        void BringToFront(string panelName);
+        bool TryGetPanel(string panelName, out UnityEngine.GameObject panel);
     }
 }

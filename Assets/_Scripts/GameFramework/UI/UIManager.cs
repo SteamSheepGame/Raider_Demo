@@ -1,104 +1,105 @@
-﻿using System.Collections.Generic;
+﻿using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Demo.Core
 {
-    /// <summary>
-    /// Controls all canvases and routes view requests to the correct View manager.
-    /// </summary>
     public class UIManager : Singleton<UIManager>
     {
-        [SerializeField] private List<GameObject> canvasObjects; // Canvases in scene
-        [SerializeField] private GameObject defaultCanvas;
+        [SerializeField, Required, TitleGroup("Canvases")]
+        private HUDView hudView;
 
-        private readonly Dictionary<string, GameObject> _canvasDict = new();
+        [SerializeField, Required, TitleGroup("Canvases")]
+        private GUIView guiView;
+
+        [SerializeField, TitleGroup("Sorting")]
+        private int hudSortingOrder = 0;
+
+        [SerializeField, TitleGroup("Sorting")]
+        private int guiSortingOrder = 1;
 
         protected override void Initialize()
         {
             base.Initialize();
-            _canvasDict.Clear();
-
-            foreach (var canvas in canvasObjects)
-            {
-                if (canvas != null)
-                {
-                    _canvasDict[canvas.name] = canvas;
-
-                    if (defaultCanvas == null || canvas.name != defaultCanvas.name)
-                        canvas.SetActive(false);
-                }
-            }
-
-            Debug.Log($"[UIManager] Initialized with {_canvasDict.Count} canvases.");
+            ApplySorting(hudView, hudSortingOrder);
+            ApplySorting(guiView, guiSortingOrder);
         }
 
-        public void ShowCanvas(string canvasName)
+        private void ApplySorting(View view, int order)
         {
-            if (_canvasDict.TryGetValue(canvasName, out var canvas))
+            if (view == null) return;
+            var c = view.GetComponent<Canvas>();
+            if (c != null)
             {
-                canvas.SetActive(true);
-            }
-            else
-            {
-                Debug.LogWarning($"[UIManager] Canvas '{canvasName}' not found.");
+                c.overrideSorting = true;
+                c.sortingOrder = order;
             }
         }
 
-        public void HideCanvas(string canvasName)
+        private IView GetView(string canvasName)
         {
-            if (_canvasDict.TryGetValue(canvasName, out var canvas))
-            {
-                canvas.SetActive(false);
-            }
-            else
-            {
-                Debug.LogWarning($"[UIManager] Canvas '{canvasName}' not found.");
-            }
-        }
+            if (hudView != null && (hudView.ViewName == canvasName || hudView.name == canvasName)) return hudView;
+            if (guiView != null && (guiView.ViewName == canvasName || guiView.name == canvasName)) return guiView;
 
-        public View GetViewManager(string canvasName)
-        {
-            if (_canvasDict.TryGetValue(canvasName, out var canvas))
-                return canvas.GetComponent<View>();
-
-            Debug.LogWarning($"[UIManager] Canvas '{canvasName}' not found.");
+            Debug.LogError($"[UIManager] No canvas/view found named '{canvasName}'.");
             return null;
         }
 
-        public void ShowViewOnCanvas(string canvasName, string viewName)
+        // ---- Generic show/hide API ----
+        public void ShowOnHUD(string panelName, bool exclusive = false, bool top = true)
+            => hudView?.Show(panelName, exclusive, top);
+
+        public void ShowOnGUI(string panelName, bool exclusive = false, bool top = true)
+            => guiView?.Show(panelName, exclusive, top);
+
+        public void HideHUD(string panelName = null) => hudView?.Hide(panelName);
+        public void HideGUI(string panelName = null) => guiView?.Hide(panelName);
+
+        public void ShowViewOnCanvas(string canvasName, string panelName, bool exclusive = false, bool bringToFront = true)
+            => GetView(canvasName)?.Show(panelName, exclusive, bringToFront);
+
+        public void HideCanvas(string canvasName, string panelName = null)
+            => GetView(canvasName)?.Hide(panelName);
+
+        public void BringPanelToFront(string canvasName, string panelName)
+            => GetView(canvasName)?.BringToFront(panelName);
+
+        public void FocusCanvas(string focusCanvasName)
         {
-            var viewManager = GetViewManager(canvasName);
-            if (viewManager != null)
-            {
-                ShowCanvas(canvasName);
-                viewManager.ShowView(viewName);
-            }
+            var hudOrder = (focusCanvasName == hudView?.ViewName || focusCanvasName == hudView?.name) ? 2 : 1;
+            var guiOrder = (focusCanvasName == guiView?.ViewName || focusCanvasName == guiView?.name) ? 2 : 1;
+            ApplySorting(hudView, hudOrder);
+            ApplySorting(guiView, guiOrder);
         }
 
-        public void ShowViewOnCanvas<T>(string canvasName) where T : Component
+        // ---- Popup helpers (directly in UIManager) ----
+        public void ShowPopup(string panelName, bool modal = true)
         {
-            var viewManager = GetViewManager(canvasName);
-            if (viewManager != null)
+            if (guiView == null)
             {
-                ShowCanvas(canvasName);
-                viewManager.ShowView<T>();
+                Debug.LogWarning("[UIManager] ShowPopup called but guiView is null.");
+                return;
             }
+            guiView.ShowPopup(panelName, modal);
         }
 
-        public void PushPopup(string viewName)
+        public void CloseTopPopup()
         {
-            var popupManager = GetViewManager("PopupCanvas") as PopupView;
-            if (popupManager != null)
-            {
-                ShowCanvas("PopupCanvas");
-                popupManager.PushView(viewName);
-            }
+            if (guiView == null) return;
+            guiView.CloseTopPopup();
         }
 
-        public void PopPopup()
+        public void ClosePopup(string panelName)
         {
-            var popupManager = GetViewManager("PopupCanvas") as PopupView;
-            popupManager?.PopView();
+            if (guiView == null) return;
+            guiView.ClosePopup(panelName);
         }
+
+        public void CloseAllPopups()
+        {
+            if (guiView == null) return;
+            guiView.CloseAllPopups();
+        }
+
+        public bool AnyPopupOpen => guiView != null && guiView.HasOpenPopups;
     }
 }

@@ -1,133 +1,131 @@
 ﻿using System.Collections.Generic;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
 
 namespace Demo.Core
 {
-    public class View : MonoBehaviour, IView
+    [RequireComponent(typeof(Canvas))]
+    public abstract class View : SerializedMonoBehaviour, IView
     {
-        [SerializeField] private List<GameObject> viewObjects; // Panels inside this canvas
-        [SerializeField] private bool enableLazyLoad = true;
-        [SerializeField] private GameObject initialView;
-        [SerializeField] private string resourceFolder = "UI/Views"; 
+        [SerializeField, TitleGroup("View Settings")]
+        protected string viewName = "UnnamedView";
 
-        private readonly Dictionary<string, GameObject> _views = new();
+        [SerializeField, TitleGroup("View Settings")]
+        protected bool enableLazyLoad = true;
 
-        private void Awake()
+        [SerializeField, TitleGroup("View Settings")]
+        protected string resourceFolder = "UI/Views";
+
+        [SerializeField, TitleGroup("Panels (Optional Prebound)")]
+        protected List<GameObject> preboundPanels = new();
+
+        protected readonly Dictionary<string, GameObject> panels = new();
+
+        public string ViewName => viewName;
+        public bool IsVisible => gameObject.activeInHierarchy;
+
+        protected virtual void Awake()
         {
-            Initialize();
+            panels.Clear();
+
+            foreach (var go in preboundPanels)
+            {
+                if (go == null) continue;
+                if (!panels.ContainsKey(go.name))
+                    panels.Add(go.name, go);
+                else
+                    Debug.LogWarning($"[View:{viewName}] Duplicate panel name '{go.name}'.");
+            }
         }
 
-        private void Initialize()
+        public virtual void Show(string panelName, bool exclusive = false, bool bringToFront = true)
         {
-            _views.Clear();
-
-            foreach (var view in viewObjects)
+            if (string.IsNullOrEmpty(panelName))
             {
-                if (view != null)
-                {
-                    _views[view.name] = view;
-
-                    if (initialView == null || view.name != initialView.name)
-                        view.SetActive(false);
-                }
+                Debug.LogWarning($"[View:{viewName}] Show called with empty panelName.");
+                return;
             }
 
-            Debug.Log($"[View] Initialized with {_views.Count} views on canvas '{gameObject.name}'.");
+            if (!TryGetPanel(panelName, out var panel))
+            {
+                Debug.LogError($"[View:{viewName}] Panel '{panelName}' not found or failed to load.");
+                return;
+            }
+
+            if (exclusive) HideAllExcept(panelName);
+
+            panel.SetActive(true);
+
+            if (bringToFront)
+                panel.transform.SetAsLastSibling();
         }
 
-         /// <summary>
-        /// Show a view. If not found and lazy load enabled, load it from Resources.
-        /// Does NOT hide other views.
-        /// </summary>
-        public void ShowView(string viewName)
+        public virtual void Hide(string panelName = null)
         {
-            if (!_views.TryGetValue(viewName, out var view))
+            if (string.IsNullOrEmpty(panelName))
             {
-                if (enableLazyLoad)
-                    view = LoadAndRegisterView(viewName);
-
-                if (view == null)
-                {
-                    Debug.LogWarning($"[View] View '{viewName}' not found in canvas '{name}'.");
-                    return;
-                }
+                HideAll();
+                return;
             }
 
-            view.SetActive(true);
+            if (panels.TryGetValue(panelName, out var panel) && panel != null)
+                panel.SetActive(false);
         }
 
-        /// <summary>
-        /// Hide a specific view. Will destroy if tagged "TempView".
-        /// </summary>
-        public void HideView(string viewName)
+        public virtual void BringToFront(string panelName)
         {
-            if (_views.TryGetValue(viewName, out var view))
-            {
-                view.SetActive(false);
-
-                if (view.CompareTag("TempView"))
-                {
-                    _views.Remove(viewName);
-                    Destroy(view);
-                }
-            }
+            if (panels.TryGetValue(panelName, out var panel) && panel != null)
+                panel.transform.SetAsLastSibling();
             else
-            {
-                Debug.LogWarning($"[View] View '{viewName}' not found in canvas '{name}'.");
-            }
+                Debug.LogWarning($"[View:{viewName}] BringToFront: '{panelName}' not found.");
         }
 
-        /// <summary>
-        /// Show a view by type name.
-        /// </summary>
-        public void ShowView<T>() where T : Component
+        public virtual bool TryGetPanel(string panelName, out GameObject panel)
         {
-            string typeName = typeof(T).Name;
+            if (panels.TryGetValue(panelName, out panel) && panel != null)
+                return true;
 
-            if (!_views.TryGetValue(typeName, out var view))
+            if (enableLazyLoad)
             {
-                if (enableLazyLoad)
-                    view = LoadAndRegisterView(typeName);
+                var path = string.IsNullOrEmpty(resourceFolder)
+                    ? panelName
+                    : $"{resourceFolder}/{panelName}";
 
-                if (view == null)
+                var prefab = Resources.Load<GameObject>(path);
+                if (prefab != null)
                 {
-                    Debug.LogWarning($"[View] View of type '{typeName}' not found in canvas '{name}'.");
-                    return;
+                    panel = Instantiate(prefab, transform);
+                    panel.name = prefab.name;
+                    panels[panel.name] = panel;
+                    panel.SetActive(false);
+                    return true;
                 }
+
+                Debug.LogWarning($"[View:{viewName}] Could not load prefab at '{path}'.");
             }
 
-            view.SetActive(true);
+            panel = null;
+            return false;
         }
 
-        /// <summary>
-        /// Hide all views in this canvas (useful for resetting UI).
-        /// </summary>
-        public void HideAllViews()
+        protected void HideAll()
         {
-            foreach (var view in _views.Values)
-                view.SetActive(false);
-        }
-
-        private GameObject LoadAndRegisterView(string viewName)
-        {
-            string path = string.IsNullOrEmpty(resourceFolder)
-                ? viewName
-                : $"{resourceFolder}/{viewName}";
-
-            var prefab = Resources.Load<GameObject>(path);
-
-            if (prefab == null)
+            foreach (var kv in panels)
             {
-                Debug.LogWarning($"[View] Could not load prefab at {path}");
-                return null;
+                if (kv.Value != null)
+                    kv.Value.SetActive(false);
             }
+        }
 
-            var instance = Instantiate(prefab, transform);
-            instance.name = prefab.name;
-            _views[instance.name] = instance;
-            instance.SetActive(false);
-
-            return instance;
+        protected void HideAllExcept(string keepPanelName)
+        {
+            foreach (var kv in panels)
+            {
+                if (kv.Value == null) continue;
+                if (kv.Key == keepPanelName) continue;
+                kv.Value.SetActive(false);
+            }
         }
     }
 }
