@@ -6,6 +6,7 @@ using UnityEngine;
 namespace Demo.Core
 {
     [RequireComponent(typeof(Canvas))]
+
     public abstract class View : SerializedMonoBehaviour, IView
     {
         [SerializeField, TitleGroup("View Settings")]
@@ -73,6 +74,10 @@ namespace Demo.Core
                 panel.SetActive(false);
         }
 
+        /// <summary>
+        /// Bring specific panel to the front
+        /// </summary>
+
         public virtual void BringToFront(string panelName)
         {
             if (panels.TryGetValue(panelName, out var panel) && panel != null)
@@ -80,6 +85,10 @@ namespace Demo.Core
             else
                 Debug.LogWarning($"[View:{viewName}] BringToFront: '{panelName}' not found.");
         }
+
+        /// <summary>
+        /// Lazy load panel from resource/UI/Views
+        /// </summary>
 
         public virtual bool TryGetPanel(string panelName, out GameObject panel)
         {
