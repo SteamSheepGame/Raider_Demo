@@ -77,7 +77,6 @@ namespace Demo.Core
         /// <summary>
         /// Bring specific panel to the front
         /// </summary>
-
         public virtual void BringToFront(string panelName)
         {
             if (panels.TryGetValue(panelName, out var panel) && panel != null)
@@ -89,7 +88,6 @@ namespace Demo.Core
         /// <summary>
         /// Lazy load panel from resource/UI/Views
         /// </summary>
-
         public virtual bool TryGetPanel(string panelName, out GameObject panel)
         {
             if (panels.TryGetValue(panelName, out panel) && panel != null)
