@@ -24,7 +24,7 @@ namespace Demo.Core
         private void Update()
         {
             if (!enableEscToCloseTop) return;
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape)) //后续不能用这个input的写法
                 CloseTopPopup();
         }
 

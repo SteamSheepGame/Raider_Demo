@@ -19,7 +19,6 @@ namespace Demo.Core
         private int guiSortingOrder = 1;
 
         // Dictionary: viewName -> Canvas
-        private readonly Dictionary<string, Canvas> canvasLookup = new();
         private readonly Dictionary<string, IView> viewLookup = new();
 
         protected override void Initialize()
@@ -42,7 +41,6 @@ namespace Demo.Core
             canvas.sortingOrder = order;
 
             viewLookup[view.ViewName] = view;
-            canvasLookup[view.ViewName] = canvas;
         }
 
         /// <summary>
@@ -50,35 +48,35 @@ namespace Demo.Core
         /// </summary>
         public void SetCanvasOrder(string viewName, int newOrder)
         {
-            if (!canvasLookup.TryGetValue(viewName, out var canvas))
+            if (!viewLookup.TryGetValue(viewName, out var iview))
             {
                 Debug.LogWarning($"[UIManager] No canvas cached with name '{viewName}'.");
                 return;
             }
-            canvas.sortingOrder = newOrder;
+            iview.GetCanvas().sortingOrder = newOrder;
         }
 
-        public int GetCanvasOrder(string viewName)
+        public int GetCanvasOrder(View view, string viewName)
         {
-            return canvasLookup.TryGetValue(viewName, out var canvas)
-                ? canvas.sortingOrder
+            return viewLookup.TryGetValue(viewName, out var iview)
+                ? iview.GetCanvas().sortingOrder
                 : -1;
         }
 
         /// <summary>
         /// Brings one canvas in front of all others
         /// </summary>
-        public void FocusCanvas(string focusViewName)
+        public void FocusCanvas(View view,string focusViewName)
         {
             int topOrder = 2;
             int bottomOrder = 1;
 
-            foreach (var kv in canvasLookup)
+            foreach (var kv in viewLookup)
             {
                 if (kv.Key == focusViewName)
-                    kv.Value.sortingOrder = topOrder;
+                    kv.Value.GetCanvas().sortingOrder = topOrder;
                 else
-                    kv.Value.sortingOrder = bottomOrder;
+                    kv.Value.GetCanvas().sortingOrder = bottomOrder;
             }
         }
 

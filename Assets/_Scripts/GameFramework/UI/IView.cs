@@ -9,5 +9,6 @@ namespace Demo.Core
         void Hide(string panelName = null);
         void BringToFront(string panelName);
         bool TryGetPanel(string panelName, out UnityEngine.GameObject panel);
+        UnityEngine.Canvas GetCanvas();
     }
 }

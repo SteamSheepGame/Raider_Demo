@@ -10,7 +10,7 @@ namespace Demo.Core
     public abstract class View : SerializedMonoBehaviour, IView
     {
         [SerializeField, TitleGroup("View Settings")]
-        protected string viewName = "UnnamedView";
+        protected UnityEngine.Canvas canvas;
 
         [SerializeField, TitleGroup("View Settings")]
         protected bool enableLazyLoad = true;
@@ -23,7 +23,7 @@ namespace Demo.Core
 
         protected readonly Dictionary<string, GameObject> panels = new();
 
-        public string ViewName => viewName;
+        public string ViewName => canvas.name;
         public bool IsVisible => gameObject.activeInHierarchy;
 
         protected virtual void Awake()
@@ -36,7 +36,7 @@ namespace Demo.Core
                 if (!panels.ContainsKey(go.name))
                     panels.Add(go.name, go);
                 else
-                    Debug.LogWarning($"[View:{viewName}] Duplicate panel name '{go.name}'.");
+                    Debug.LogWarning($"[View:{ViewName}] Duplicate panel name '{go.name}'.");
             }
         }
 
@@ -44,13 +44,13 @@ namespace Demo.Core
         {
             if (string.IsNullOrEmpty(panelName))
             {
-                Debug.LogWarning($"[View:{viewName}] Show called with empty panelName.");
+                Debug.LogWarning($"[View:{ViewName}] Show called with empty panelName.");
                 return;
             }
 
             if (!TryGetPanel(panelName, out var panel))
             {
-                Debug.LogError($"[View:{viewName}] Panel '{panelName}' not found or failed to load.");
+                Debug.LogError($"[View:{ViewName}] Panel '{panelName}' not found or failed to load.");
                 return;
             }
 
@@ -82,7 +82,7 @@ namespace Demo.Core
             if (panels.TryGetValue(panelName, out var panel) && panel != null)
                 panel.transform.SetAsLastSibling();
             else
-                Debug.LogWarning($"[View:{viewName}] BringToFront: '{panelName}' not found.");
+                Debug.LogWarning($"[View:{ViewName}] BringToFront: '{panelName}' not found.");
         }
 
         /// <summary>
@@ -109,11 +109,18 @@ namespace Demo.Core
                     return true;
                 }
 
-                Debug.LogWarning($"[View:{viewName}] Could not load prefab at '{path}'.");
+                Debug.LogWarning($"[View:{ViewName}] Could not load prefab at '{path}'.");
             }
 
             panel = null;
             return false;
+        }
+
+        /// <summary>
+        /// Get Canvas
+        /// </summary>
+        public virtual Canvas GetCanvas(){
+            return canvas;
         }
 
         protected void HideAll()
