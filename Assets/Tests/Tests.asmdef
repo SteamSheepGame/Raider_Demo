@@ -1,0 +1,15 @@
+{
+    "name": "Tests",
+    "rootNamespace": "Deme.Tests",
+    "references": [
+        "Sirenix.OdinInspector",
+        "Sirenix.Serialization",
+        "Demo.Core"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"                
+    ]
+}
