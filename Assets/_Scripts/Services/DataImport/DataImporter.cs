@@ -76,16 +76,14 @@ namespace Demo.Core
             }
         }
         
-        
         /// <summary>
-        /// 获取与指定实体标签匹配的已加载数据
+        /// 利用JsonEntityParser解析json数据
         /// </summary>
-        /// <param name="entityTag">需要匹配的实体标签，如“element”</param>
         /// <returns></returns>
-        public IEnumerable<LoadedData> GetMatchingLoadedData(string entityTag)
+        public List<IEntity> HandleLoadedData()
         {
-            IEnumerable<LoadedData> matchingFiles = _loadedData.Where(data => data.EntityTag.Equals(entityTag.ToLower()));
-            return matchingFiles;
+            List<IEntity> entities = JsonEntityParser.ParseData(_loadedData) as List<IEntity>;
+            return entities;
         }
     }
 }
