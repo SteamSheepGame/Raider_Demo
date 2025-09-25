@@ -17,8 +17,12 @@ namespace Demo.Core
         /// <returns></returns>
         protected override ICard CreateInstance(IEntity entity)
         {
-            var cardObject = Object.Instantiate(Prefab);
-            ICard card = cardObject.AddComponent<CharacterCard>();
+            // Get UI Canvas
+            Transform parentCanvas = UIManager.Instance.HUDView.transform;
+            var cardObject = Object.Instantiate(Prefab, parentCanvas);
+            
+            // 初始化ICard
+            ICard card = cardObject.GetComponent<CharacterCard>();
             card.Bind(entity);
             return card;
         }

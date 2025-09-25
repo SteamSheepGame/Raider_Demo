@@ -5,7 +5,7 @@ namespace Demo.Core
     // Simplified for testing purposes
     public class CardFactoryTest: Singleton<CardFactoryTest>
     {
-        [SerializeField] GameObject cardPrefab; 
+        [SerializeField] GameObject cardPrefab;
         
         protected override void Initialize()
         {
@@ -21,8 +21,10 @@ namespace Demo.Core
             // Init FactoryService
             ServiceProvider.Instance.RegisterService<IFactoryService>(new FactoryService());
             IFactoryService factoryService = ServiceProvider.Instance.GetService<IFactoryService>();
+            
             //Register Factory
             factoryService.Register<CharacterEntity>(new CharacterCardFactory(cardPrefab));
+            
             // Create Card for each entity in 
             foreach (IEntity entity in storeService.GetAllEntities())
             {
