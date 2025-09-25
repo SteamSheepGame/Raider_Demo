@@ -4,7 +4,7 @@
       "id": "1235",
       "label": "TestCharacter2",
       "aspect": "Character",
-      "image": "Character.png",
+      "image": "CharacterSprites/Test1",
       "description": "This is a crazy character!",
       "attributes": {
         "intellect": 10,
