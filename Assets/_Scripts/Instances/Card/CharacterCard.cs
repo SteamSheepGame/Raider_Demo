@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System;         
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 namespace Demo.Core
 {
@@ -13,10 +14,11 @@ namespace Demo.Core
         IBeginDragHandler,  IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler,
         IPointerEnterHandler, IPointerExitHandler
     {
+        [FormerlySerializedAs("backgroundImage")]
         [TitleGroup("UI References")]
-        [SerializeField, Required] private Image backgroundImage;
-        [SerializeField, Required] private TextMeshProUGUI titleText;
-        [SerializeField, Required] private RectTransform rect;
+        [SerializeField, Required] private Image _backgroundImage;
+        [SerializeField, Required] private TextMeshProUGUI _titleText;
+        [SerializeField, Required] private RectTransform _rect;
         
         [TitleGroup("UI Setting")]
         [SerializeField] private float StartingAlpha = 1f;
@@ -26,33 +28,33 @@ namespace Demo.Core
         // Visuals
         public Sprite Background
         {
-            get => backgroundImage != null ? backgroundImage.sprite : null;
+            get => _backgroundImage != null ? _backgroundImage.sprite : null;
             set
             {
-                if (backgroundImage != null) backgroundImage.sprite = value;
+                if (_backgroundImage != null) _backgroundImage.sprite = value;
             }
         }
 
         public string Label
         {
-            get => titleText != null? titleText.text : null;
+            get => _titleText != null? _titleText.text : null;
             set
             {
-                if (titleText != null) titleText.text = value;
+                if (_titleText != null) _titleText.text = value;
             }
         }
 
         public RectTransform Rect
         {
-            get => rect != null? rect : null;
+            get => _rect != null? _rect : null;
             set
             {
-                if (rect != null) rect = value;
+                if (_rect != null) _rect = value;
             }
         }
         
-        private Canvas canvas;
-        private CanvasGroup canvasGroup;
+        private Canvas _canvas;
+        private CanvasGroup _canvasGroup;
         // State
         public bool IsSelected { get; set; }
         public bool IsDraggable { get; set; } = true;
@@ -65,8 +67,8 @@ namespace Demo.Core
         
         private void Awake()
         {
-            canvas = GetComponentInParent<Canvas>();       // needed for scaling
-            canvasGroup = gameObject.AddComponent<CanvasGroup>();
+            _canvas = GetComponentInParent<Canvas>();       // needed for scaling
+            _canvasGroup = gameObject.AddComponent<CanvasGroup>();
         }
         
         /// <summary>
@@ -128,19 +130,19 @@ namespace Demo.Core
         void UnityEngine.EventSystems.IBeginDragHandler.OnBeginDrag(PointerEventData Data)
         {
             // 调整透明度
-            canvasGroup.alpha = SelectedAlpha;
+            _canvasGroup.alpha = SelectedAlpha;
             // 从卡堆里移除
         }
 
         void UnityEngine.EventSystems.IDragHandler.OnDrag(PointerEventData Data)
         {
-            Rect.anchoredPosition += Data.delta / canvas.scaleFactor;
+            Rect.anchoredPosition += Data.delta / _canvas.scaleFactor;
         }
 
         void UnityEngine.EventSystems.IEndDragHandler.OnEndDrag(PointerEventData Data)
         {
             // 调整透明度
-            canvasGroup.alpha = StartingAlpha;
+            _canvasGroup.alpha = StartingAlpha;
             // 如果没有进slot，返回卡堆
         }
 
