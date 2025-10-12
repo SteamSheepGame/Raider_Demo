@@ -3,8 +3,10 @@ using Sirenix.Serialization;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using System;         
+using System;
+using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Graphs;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 
@@ -14,7 +16,7 @@ namespace Demo.Core
         IBeginDragHandler,  IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler,
         IPointerEnterHandler, IPointerExitHandler
     {
-        [FormerlySerializedAs("backgroundImage")]
+        
         [TitleGroup("UI References")]
         [SerializeField, Required] private Image _backgroundImage;
         [SerializeField, Required] private TextMeshProUGUI _titleText;
@@ -24,6 +26,8 @@ namespace Demo.Core
         [SerializeField] private float StartingAlpha = 1f;
         [SerializeField] private float SelectedAlpha = 0.5f;
         public IEntity Entity { get; private set;}
+        
+        public ISlot OccupiedSlot { get; private set; }
         
         // Visuals
         public Sprite Background
@@ -112,7 +116,7 @@ namespace Demo.Core
 
         public void MoveTo(Vector3 worldPos, float duration = 0.15f)
         {
-            
+            this.transform.localPosition = worldPos;
         }
 
         public void SnapTo(ISlot slot)
@@ -143,7 +147,34 @@ namespace Demo.Core
         {
             // 调整透明度
             _canvasGroup.alpha = StartingAlpha;
-            // 如果没有进slot，返回卡堆
+            
+            bool inSlot = false;
+
+            ISlot OverlappedSlot = SlotManager.Instance?.GetNearestOverlapping(Rect);
+
+            if (OverlappedSlot != null)
+            {
+                inSlot = OverlappedSlot.TryAccept(this);
+                if (!inSlot)
+                {
+                    // 没有进slot，返回卡堆
+                    transform.localPosition = Vector3.zero;
+                    Debug.Log("未放入slot，返回卡堆");
+                    if (OccupiedSlot != null)
+                    {
+                        OccupiedSlot.Clear();
+                    }
+                }
+                else
+                {
+                    OccupiedSlot = OverlappedSlot;
+                }
+            }
+            else
+            {
+                transform.localPosition = Vector3.zero;
+                Debug.Log("未放入slot，返回卡堆");
+            }
         }
 
         #endregion

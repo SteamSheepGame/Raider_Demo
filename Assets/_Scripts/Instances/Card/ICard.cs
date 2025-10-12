@@ -12,6 +12,8 @@ namespace Demo.Core
         Sprite Background { get; set; }
         RectTransform Rect { get; }
         
+        ISlot OccupiedSlot { get; }
+        
         // State
         bool IsSelected { get; set; } 
         bool IsDraggable { get; set; }
