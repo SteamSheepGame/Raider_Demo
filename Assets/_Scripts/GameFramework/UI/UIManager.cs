@@ -21,6 +21,9 @@ namespace Demo.Core
         // Dictionary: viewName -> Canvas
         private readonly Dictionary<string, IView> viewLookup = new();
 
+        // 增加public getter
+        public HUDView HUDView => hudView;
+        public GUIView GUIView => guiView;
         protected override void Initialize()
         {
             base.Initialize();
