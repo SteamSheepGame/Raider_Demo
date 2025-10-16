@@ -21,14 +21,21 @@ namespace Demo.Core
         [SerializeField, Required] private Image _backgroundImage;
         [SerializeField, Required] private TextMeshProUGUI _titleText;
         [SerializeField, Required] private RectTransform _rect;
+        [SerializeField, Required] private CharacterSlot _characterSlot;
         
         [TitleGroup("UI Setting")]
         [SerializeField] private float StartingAlpha = 1f;
         [SerializeField] private float SelectedAlpha = 0.5f;
         public IEntity Entity { get; private set;}
-        
+
         public ISlot OccupiedSlot { get; private set; }
         
+        public IDeck<CharacterCard> ParentDeck { get; private set; }
+        
+        // During drag
+        private ISlot _originSlot;
+        private ISlot _highlightedSlot;
+
         // Visuals
         public Sprite Background
         {
@@ -99,6 +106,12 @@ namespace Demo.Core
             return sprite;
         }
         
+        public void SetParentDeck(IDeck deck)
+        {
+            ParentDeck = deck as IDeck<CharacterCard>;
+            OccupiedSlot = null;
+        }
+        
         
         /// <summary>
         /// 扩展到细节面板
@@ -114,9 +127,17 @@ namespace Demo.Core
             Debug.Log($"{name}'s highlight status is  $\"{on}");
         }
 
-        public void MoveTo(Vector3 worldPos, float duration = 0.15f)
+        /*public void MoveTo(Vector3 worldPos, float duration = 0.15f)
         {
             this.transform.localPosition = worldPos;
+        }*/
+
+        public void PlaceCard(ISlot slot)
+        {
+            Rect.SetParent(slot.Rect);
+            Rect.anchoredPosition = Vector2.zero;
+            OccupiedSlot = slot;
+            //Rect.anchoredPosition = OccupiedSlot.Rect.anchoredPosition;
         }
 
         public void SnapTo(ISlot slot)
@@ -133,47 +154,79 @@ namespace Demo.Core
 
         void UnityEngine.EventSystems.IBeginDragHandler.OnBeginDrag(PointerEventData Data)
         {
-            // 调整透明度
+            // 调整Alpha
             _canvasGroup.alpha = SelectedAlpha;
-            // 从卡堆里移除
+            // 
+            _originSlot = OccupiedSlot;
+
+            // 从Slot中移出
+            if (ParentDeck != null)
+            {
+                ParentDeck.TryRemove(this);
+            }
+            else if (_originSlot != null)
+            {
+                _originSlot.Clear();
+                OccupiedSlot = null;
+            }
+
+            // 暂时放入Canvas，以后可能加入其他layer专门放置移动中的卡牌
+            Vector2 screenPos = RectTransformUtility.WorldToScreenPoint(null, Rect.position);
+            RectTransform canvasRect = UIManager.Instance.HUDView.GetComponent<RectTransform>();
+            Rect.SetParent(canvasRect, false);
+            // 从Local位置转为World
+            Vector2 localPos;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, screenPos, null, out localPos);
+            Rect.anchoredPosition = localPos;
         }
 
         void UnityEngine.EventSystems.IDragHandler.OnDrag(PointerEventData Data)
         {
+            // 让Card跟住鼠标
             Rect.anchoredPosition += Data.delta / _canvas.scaleFactor;
+            // 检查是否碰到Slot
+            ISlot newSlot = SlotManager.Instance?.GetNearestOverlapping(Rect);
+            // 如果碰到slot是上次Hightlight过的，结束
+            if (ReferenceEquals(newSlot, _highlightedSlot)) return;
+            // 不是上次highlight过的，结束highlight
+            if (_highlightedSlot != null)
+            {
+                _highlightedSlot.Highlight(false);
+            }
+            _highlightedSlot = newSlot;
+            // Highlight新的
+            if (_highlightedSlot != null)
+            {
+                _highlightedSlot.Highlight(true);
+            }
         }
 
         void UnityEngine.EventSystems.IEndDragHandler.OnEndDrag(PointerEventData Data)
         {
-            // 调整透明度
+            // 重置Alpha值
             _canvasGroup.alpha = StartingAlpha;
             
-            bool inSlot = false;
-
-            ISlot OverlappedSlot = SlotManager.Instance?.GetNearestOverlapping(Rect);
-
-            if (OverlappedSlot != null)
+            // 尝试插入slot
+            ISlot overlappedSlot = SlotManager.Instance?.GetNearestOverlapping(Rect); 
+            if (overlappedSlot != null && overlappedSlot.TryAccept(this))
             {
-                inSlot = OverlappedSlot.TryAccept(this);
-                if (!inSlot)
-                {
-                    // 没有进slot，返回卡堆
-                    transform.localPosition = Vector3.zero;
-                    Debug.Log("未放入slot，返回卡堆");
-                    if (OccupiedSlot != null)
-                    {
-                        OccupiedSlot.Clear();
-                    }
-                }
-                else
-                {
-                    OccupiedSlot = OverlappedSlot;
-                }
+                OccupiedSlot = overlappedSlot;
+                return;
             }
-            else
+            
+            _highlightedSlot?.Highlight(false);
+            _highlightedSlot = null;
+            
+            // 插入失败, 清除Occupied Slot
+            OccupiedSlot?.Clear();
+            OccupiedSlot = null;
+            // 返回Deck
+            if (ParentDeck != null)
             {
-                transform.localPosition = Vector3.zero;
-                Debug.Log("未放入slot，返回卡堆");
+                Vector2 localPos;
+                RectTransformUtility.ScreenPointToLocalPointInRectangle(ParentDeck.Rect, Data.position, null, out localPos);
+                int insertIndex = ParentDeck.GetInsertIndexFromLocalPosition(localPos);
+                ParentDeck.TryInsert(this, insertIndex);
             }
         }
 

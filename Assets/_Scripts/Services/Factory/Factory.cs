@@ -11,7 +11,7 @@ namespace Demo.Core
             Prefab = prefab;
         }
 
-        protected abstract T CreateInstance(IEntity entity);
+        protected abstract T CreateInstance(IEntity entity = null);
 
         public IInstance Create(IEntity entity)
         {

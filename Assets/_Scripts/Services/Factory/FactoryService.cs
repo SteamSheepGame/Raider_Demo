@@ -8,7 +8,7 @@ namespace Demo.Core
     {
         private readonly Dictionary<Type, IFactory> _factories = new();
 
-        public void Register<T>(IFactory factory) where T : IEntity
+        public void Register<T>(IFactory factory)
         {
             _factories[typeof(T)] = factory;
         }

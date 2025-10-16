@@ -15,8 +15,9 @@ namespace Demo.Core
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        protected override ICard CreateInstance(IEntity entity)
+        protected override ICard CreateInstance(IEntity entity = null)
         {
+            if(entity == null) Debug.Log("Creating instance of CharacterCard without entity!");
             // Get UI Canvas
             Transform parentCanvas = UIManager.Instance.HUDView.transform;
             var cardObject = Object.Instantiate(Prefab, parentCanvas);
