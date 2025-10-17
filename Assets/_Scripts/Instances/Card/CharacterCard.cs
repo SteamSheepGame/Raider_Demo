@@ -172,7 +172,7 @@ namespace Demo.Core
 
             // 暂时放入Canvas，以后可能加入其他layer专门放置移动中的卡牌
             Vector2 screenPos = RectTransformUtility.WorldToScreenPoint(null, Rect.position);
-            RectTransform canvasRect = UIManager.Instance.HUDView.GetComponent<RectTransform>();
+            RectTransform canvasRect = UIManager.Instance.HUDView.Rect;
             Rect.SetParent(canvasRect, false);
             // 从Local位置转为World
             Vector2 localPos;

@@ -20,12 +20,25 @@ namespace Demo.Core
 
         [SerializeField, TitleGroup("Panels (Optional Prebound)")]
         protected List<GameObject> preboundPanels = new();
+        
 
         protected readonly Dictionary<string, GameObject> panels = new();
-
+        
         public string ViewName => canvas.name;
         public bool IsVisible => gameObject.activeInHierarchy;
-
+        
+        public RectTransform Rect
+        {
+            get
+            {
+                if (_rect == null && canvas != null)
+                    _rect = canvas.GetComponent<RectTransform>();
+                return _rect;
+            }
+        }
+        
+        private RectTransform _rect;
+        
         protected virtual void Awake()
         {
             panels.Clear();
@@ -38,6 +51,17 @@ namespace Demo.Core
                 else
                     Debug.LogWarning($"[View:{ViewName}] Duplicate panel name '{go.name}'.");
             }
+            
+            // 存储Rect
+            if (_rect == null && canvas != null)
+            {
+                _rect = canvas.GetComponent<RectTransform>();
+            }
+        }
+
+		protected virtual RectTransform GetRect()
+        {
+            return canvas.GetComponent<RectTransform>();
         }
 
         public virtual void Show(string panelName, bool exclusive = false, bool bringToFront = true)
