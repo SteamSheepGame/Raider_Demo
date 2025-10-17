@@ -1,4 +1,6 @@
 ﻿using UnityEngine; 
+using System;          
+
 namespace Demo.Core
 {
     public interface ISlot : IInstance
@@ -10,12 +12,18 @@ namespace Demo.Core
         Sprite Background { get; set; }
         RectTransform Rect { get; }
         // 物品Reference
-        Object Parent { get; set; }
+        UnityEngine.Object Parent { get; set; }
         ICard FilledCard { get; }
 
         //void Place(ICard card);
         public bool TryAccept(ICard card);
         void Highlight(bool on);
         void Clear();
+        
+        // Events
+        event Action<ISlot> HoveredEnd;
+        event Action<ISlot> HoveredStart;
+        event Action<ISlot, ICard> Filled;      
+        event Action<ISlot, ICard> Cleared;   
     }
 }

@@ -13,6 +13,7 @@ namespace Demo.Core
         RectTransform Rect { get; }
         
         ISlot OccupiedSlot { get; }
+        /*IDeck<CharacterCard> ParentDeck { get; }*/
         
         // State
         bool IsSelected { get; set; } 
@@ -23,8 +24,12 @@ namespace Demo.Core
         void Expand();                  
         void Highlight(bool on);        
         void Select(bool on);
-        void MoveTo(Vector3 worldPos, float duration = 0.15f); 
-        void SnapTo(ISlot slot);      
+        
+        void PlaceCard(ISlot slot);
+        // void MoveTo(Vector3 worldPos, float duration = 0.15f); 
+        void SnapTo(ISlot slot);
+
+        void SetParentDeck(IDeck deck);
         
         // Signals
         event Action<ICard> Clicked;

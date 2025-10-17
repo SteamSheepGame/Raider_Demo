@@ -1,4 +1,5 @@
-﻿using UnityEngine; 
+﻿using System;
+using UnityEngine; 
 using UnityEngine.UI;
 using Sirenix.OdinInspector;
 using UnityEditor.Graphs;
@@ -9,7 +10,13 @@ namespace Demo.Core
     {
         [TitleGroup("UI References")] 
         [SerializeField, Required] private RectTransform _rect;
-        [SerializeField, Required] private Image _backgroundImage;
+        [SerializeField] private Image _backgroundImage;
+        
+        // Event
+        public event Action<ISlot> HoveredStart;
+        public event Action<ISlot> HoveredEnd;
+        public event Action<ISlot, ICard> Filled;      
+        public event Action<ISlot, ICard> Cleared;   
         
         // 状态
         public bool IsFilled { get; set; }
@@ -37,23 +44,39 @@ namespace Demo.Core
         }
         
         // 物品Reference
-        public Object Parent { get; set; }
+        public  UnityEngine.Object Parent { get; set; }
         public ICard FilledCard { get; private set; }
         
         // 注册到Manager
         void OnEnable()  => SlotManager.Instance?.Register(this);
         void OnDisable() => SlotManager.Instance?.Unregister(this);
-        
-        public abstract bool TryAccept(ICard card);
+
+        public virtual bool TryAccept(ICard card)
+        {
+            if (IsFilled) return false;
+            Place(card);
+            return true;
+        }
         protected void Place(ICard card)
         {
-            card.MoveTo(_rect.anchoredPosition);
+            //card.MoveTo(_rect.anchoredPosition);
             FilledCard = card;
             IsFilled = true;    
+            Filled?.Invoke(this, card);
+            
+            card.PlaceCard(this);
         }
         
         public void Highlight(bool on)
         {
+            if (on)
+            {
+                HoveredStart?.Invoke(this);
+            }
+            else
+            {
+                HoveredEnd?.Invoke(this);
+            }
             IsSelected = on;
         }
 
@@ -61,6 +84,7 @@ namespace Demo.Core
         {
             IsFilled = false;
             FilledCard = null;
+            Cleared?.Invoke(this, FilledCard);
         }
     }
 }
