@@ -19,6 +19,10 @@ namespace Demo.Core
             base.Awake();
             if (popupRoot == null) popupRoot = (RectTransform)transform;
             if (dimmerBackdrop != null) dimmerBackdrop.SetActive(false);
+            foreach (var go in preboundPanels)
+            {
+                go.SetActive(false);
+            }
         }
 
         private void Update()
