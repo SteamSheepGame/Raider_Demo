@@ -11,19 +11,24 @@ namespace Demo.Core
         public Button TypeButton;
         public UIManager Manager;
         
+        private void Awake()
+        {
+            TypeButton.onClick.AddListener(CloseTypePanel);
+        }
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            Button btn = TypeButton.GetComponent<Button>();
-            btn.onClick.AddListener(CloseTypePanel);
+            // Button btn = TypeButton.GetComponent<Button>();
+            // btn.onClick.AddListener(CloseTypePanel);
         }
 
         public void CloseTypePanel() 
         {
-                Manager.ClosePopup(TypePanel.name);
-                EnableAllOtherButtons(TypeButton.GetComponent<Button>());
+            Manager.ClosePopup(TypePanel.name);
+            EnableAllOtherButtons(TypeButton);
         }
-
+        
+        // Todo:: Cache all button in UIManager, use a function to get cached buttons
         public void EnableAllOtherButtons(Button clickedButton)
         {
             Button[] allButtons = FindObjectsOfType<Button>(); 

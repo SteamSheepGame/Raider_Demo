@@ -12,29 +12,35 @@ namespace Demo.Core
         public UIManager Manager;
         public bool isEnabled = false;
         
+        private void Awake()
+        {
+            TypeButton.onClick.AddListener(OpenTypePanel);
+        }
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            Button btn = TypeButton.GetComponent<Button>();
-            btn.onClick.AddListener(OpenTypePanel);
+            // Button btn = TypeButton.GetComponent<Button>();
+            // btn.onClick.AddListener(OpenTypePanel);
         }
 
         public void OpenTypePanel() 
         {
             if(isEnabled == false)
             {
-                DisableAllOtherButtons(TypeButton.GetComponent<Button>());
+                DisableAllOtherButtons(TypeButton);
                 Manager.ShowPopup(TypePanel.name);
                 isEnabled = true;
             }
             else 
             {
-                EnableAllOtherButtons(TypeButton.GetComponent<Button>());
+                EnableAllOtherButtons(TypeButton);
                 Manager.ClosePopup(TypePanel.name);
                 isEnabled = false;
             }
 
         }
+        
+        // Todo:: Cache all button in UIManager, use a function to get cached buttons
         public void DisableAllOtherButtons(Button clickedButton)
         {
             Button[] allButtons = FindObjectsOfType<Button>(); 
@@ -47,6 +53,8 @@ namespace Demo.Core
                 }
             }
         }
+        
+        // Todo:: Cache all button in UIManager, use a function to get cached buttons
         public void EnableAllOtherButtons(Button clickedButton)
         {
             Button[] allButtons = FindObjectsOfType<Button>(); 
