@@ -1,0 +1,18 @@
+﻿{
+  "Popup": [
+    {
+      "Id": "DockPopup1",
+      "Type": "LocationPopup",
+      "Title": "Dock",
+      "Description": "On the dock, you see two people",
+      "Characters": ["DockPerson1", "DockPerson2"]
+    },
+    {
+      "Id": "PubPopup1",
+      "Type": "LocationPopup",
+      "Title": "Pub",
+      "Description": "This is a silly little pub",
+      "Characters": ["DockPerson1", "DockPerson2"]
+    }
+  ]
+}

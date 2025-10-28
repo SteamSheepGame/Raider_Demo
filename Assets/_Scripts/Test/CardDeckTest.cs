@@ -7,12 +7,19 @@ namespace Demo.Core
     public class CardDeckTest: Singleton<CardFactoryTest>
     {
         [SerializeField] GameObject cardDeckPrefab;
-        [SerializeField] GameObject cardPrefab;
+        [SerializeField] GameObject cardPrefabChar;
+        [SerializeField] GameObject cardPrefabLoc;
+        [SerializeField] GameObject locationPopup;
 
         private List<CharacterCard> cards;
+        
         protected override void Initialize()
         {
            
+        }
+
+        private void Start()
+        {
             cards = new List<CharacterCard>();
             
             // Init DataImporter 
@@ -20,6 +27,7 @@ namespace Demo.Core
             dtImporter.LoadDataFromAssignedFolder();
             // Store entities inside EntityStore
             ServiceProvider.Instance.RegisterService<IEntityStoreService>(new EntityStoreService());
+            ServiceProvider.Instance.RegisterService<IActionService>(new ActionService());
             IEntityStoreService storeService = ServiceProvider.Instance.GetService<IEntityStoreService>();
             storeService.HandleImportData(dtImporter);
             
@@ -28,7 +36,9 @@ namespace Demo.Core
             IFactoryService factoryService = ServiceProvider.Instance.GetService<IFactoryService>();
 
             //Register Factory
-            factoryService.Register<CharacterEntity>(new CharacterCardFactory(cardPrefab));
+            factoryService.Register<CharacterEntity>(new CharacterCardFactory(cardPrefabChar));
+            factoryService.Register<LocationEntity>(new LocationCardFactory(cardPrefabLoc));
+            factoryService.Register<PopupEntity>(new PopupFactory(locationPopup));
            
             foreach (IEntity entity in storeService.GetAllEntities())
             {
@@ -39,12 +49,20 @@ namespace Demo.Core
                         CharacterCard card = factoryService.Create(entity) as CharacterCard;
                         cards.Add(card);
                     }
+                } else if (entity is LocationEntity)
+                {
+                    LocationCard card = factoryService.Create(entity) as LocationCard;
+                    LocationDeckUI locationDeckUI = UIManager.Instance.GetLocationDeckUI();
+                    if (locationDeckUI != null)
+                    {
+                        locationDeckUI.AddCard(card);
+                    }
+                }
+                else
+                {
+                    Debug.Log(entity.Id);
                 }
             }
-        }
-
-        private void Start()
-        {
             // Init Player Deck
             PlayerDeckManager.Instance.InitPlayerDeck();
             CharacterDeck Deck = PlayerDeckManager.Instance.Get<CharacterDeck>();

@@ -8,12 +8,12 @@ namespace Demo.Core
     public class CloseButtonControl: MonoBehaviour, IPointerDownHandler
     {
         public GameObject TypePanel;
-        public Button TypeButton;
-        public UIManager Manager;
+        public Button CLoseButton;
+        // public UIManager Manager;
         
         private void Awake()
         {
-            TypeButton.onClick.AddListener(CloseTypePanel);
+            CLoseButton.onClick.AddListener(CloseTypePanel);
         }
 
         public void OnPointerDown(PointerEventData eventData)
@@ -24,8 +24,8 @@ namespace Demo.Core
 
         public void CloseTypePanel() 
         {
-            Manager.ClosePopup(TypePanel.name);
-            EnableAllOtherButtons(TypeButton);
+            UIManager.Instance.ClosePopup(TypePanel.name);
+            EnableAllOtherButtons(CLoseButton);
         }
         
         // Todo:: Cache all button in UIManager, use a function to get cached buttons

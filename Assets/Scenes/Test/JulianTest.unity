@@ -410,6 +410,7 @@ MonoBehaviour:
   guiView: {fileID: 1324210543}
   hudSortingOrder: 0
   guiSortingOrder: 1
+  locationDeck: {fileID: 0}
 --- !u!4 &1073386701
 Transform:
   m_ObjectHideFlags: 0
@@ -466,8 +467,9 @@ MonoBehaviour:
     - Name: _isDontDestroyOnLoad
       Entry: 5
       Data: true
-  cardDeckPrefab: {fileID: 0}
-  cardPrefab: {fileID: 4455005191783407797, guid: be032660e7e2c7a429fdaa99a2ea784b, type: 3}
+  cardDeckPrefab: {fileID: 2958992459172186127, guid: 907cde593270f114f9982ec9da710a93, type: 3}
+  cardPrefabChar: {fileID: 4455005191783407797, guid: be032660e7e2c7a429fdaa99a2ea784b, type: 3}
+  cardPrefabLoc: {fileID: 4455005191783407797, guid: 53234558b214018459d776d14b4b6d94, type: 3}
 --- !u!4 &1087749403
 Transform:
   m_ObjectHideFlags: 0

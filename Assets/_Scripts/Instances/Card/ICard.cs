@@ -18,6 +18,7 @@ namespace Demo.Core
         // State
         bool IsSelected { get; set; } 
         bool IsDraggable { get; set; }
+        bool IsClickable { get; set; }
         bool IsFaceUp { get; set; }
         
         // UX actions

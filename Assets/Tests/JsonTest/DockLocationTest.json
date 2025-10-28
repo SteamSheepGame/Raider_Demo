@@ -1,0 +1,16 @@
+﻿{
+  "Location":
+  {
+    "id": "Dock",
+    "label": "Dock",
+    "description": "A peaceful dock.",
+    "Image": "LocationSprites/Dock",
+    "AvailableActions": [
+      {
+        "id": "OpenPopup",
+        "popupid": "DockPopup1",
+        "trigger": "OnClick"
+      }
+    ]
+  }
+}

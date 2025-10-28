@@ -32,6 +32,10 @@ namespace Demo.Core
             set => _rect = value;
         }
         
+        /// <summary>
+        /// Deck初始化，放入卡牌
+        /// </summary>
+        /// <param name="Cards"></param>
         public void InitDeck(List<TCard> Cards)
         {
             if (Cards.Count > _maxCount)
@@ -47,6 +51,9 @@ namespace Demo.Core
             }
         }
 
+        /// <summary>
+        /// 居中排列卡牌
+        /// </summary>
         private void UpdatePosition()
         {
             // 算出card数量
@@ -72,6 +79,11 @@ namespace Demo.Core
             }
         }
         
+        /// <summary>
+        /// 加入新的卡牌
+        /// </summary>
+        /// <param name="card"></param>
+        /// <returns></returns>
         public bool TryAdd(TCard card)
         {
             if (currentCount >= _maxCount) return false;
@@ -80,13 +92,18 @@ namespace Demo.Core
             card.Rect.SetParent(Rect, false);
             currentCount++;
             
-            //
             card.SetParentDeck(this);
 
             UpdatePosition();
             return true;
         }
-
+        
+        /// <summary>
+        /// 在Index位置加入新的卡牌
+        /// </summary>
+        /// <param name="card"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public bool TryInsert(TCard card, int index)
         {
             if (index < 0) index = 0;
@@ -104,7 +121,12 @@ namespace Demo.Core
             UpdatePosition();
             return true;
         }
-
+        
+        /// <summary>
+        /// 清楚卡牌
+        /// </summary>
+        /// <param name="card"></param>
+        /// <returns></returns>
         public bool TryRemove(TCard card)
         {
             if (_cards.Remove(card))
@@ -115,7 +137,8 @@ namespace Demo.Core
             }
             return false;
         }
-
+        
+        
         public void OnDeckHoverStart(int index)
         {
             lastHoveredSlotIndex = Mathf.Clamp(index, 0, _cards.Count);
@@ -128,6 +151,11 @@ namespace Demo.Core
             UpdatePosition();
         }
         
+        /// <summary>
+        /// 找到Mouse所在位置的卡牌Index
+        /// </summary>
+        /// <param name="localMousePos"></param>
+        /// <returns></returns>
         public int GetInsertIndexFromLocalPosition(Vector2 localMousePos)
         {
             if (_cards.Count == 0) return 0;

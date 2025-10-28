@@ -1,20 +1,39 @@
 ﻿{
   "Character": 
-    {
-      "id": "1234",
-      "label": "TestCharacter1",
-      "aspect": "Character",
-      "image": "CharacterSprites/Test1",
-      "description": "This is a amazing character!",
-      "attributes": {
-        "intellect": 0,
-        "religion": 0,
-        "strength": 0,
-        "charm": 3,
-        "occult": 0,
-        "history": 0,
-        "technology": 0,
-        "sanity": 0
+    [
+      {
+        "id": "1234",
+        "label": "TestCharacter1",
+        "aspect": "Character",
+        "image": "CharacterSprites/Test1",
+        "description": "This is a amazing character!",
+        "attributes": {
+          "intellect": 0,
+          "religion": 0,
+          "strength": 0,
+          "charm": 3,
+          "occult": 0,
+          "history": 0,
+          "technology": 0,
+          "sanity": 0
+        }
+      },
+      {
+        "id": "1236",
+        "label": "ArrayTestCharacters",
+        "aspect": "Character",
+        "image": "CharacterSprites/Test1",
+        "description": "This is a amazing character!",
+        "attributes": {
+          "intellect": 0,
+          "religion": 0,
+          "strength": 0,
+          "charm": 3,
+          "occult": 0,
+          "history": 0,
+          "technology": 0,
+          "sanity": 0
+        }
       }
-    }
+    ]
 }
