@@ -1,0 +1,16 @@
+﻿{
+  "Location":
+  {
+    "id": "Pub",
+    "label": "Pub",
+    "description": "A crowded pub.",
+    "Image": "LocationSprites/Pub",
+    "AvailableActions": [
+      {
+        "id": "OpenPopup",
+        "popupid": "PubPopup1",
+        "trigger": "OnClick"
+      }
+    ]
+  }
+}

@@ -17,9 +17,16 @@ namespace Demo.Core
 
         [SerializeField, TitleGroup("Sorting")]
         private int guiSortingOrder = 1;
-
+        
+        [SerializeField, Required, TitleGroup("UI Reference")]
+        private GameObject locationDeck;
+        // Might be useful in the future to group multiple popups
+        // private RectTransform popupParent;
+        
         // Dictionary: viewName -> Canvas
         private readonly Dictionary<string, IView> viewLookup = new();
+        
+        private LocationDeckUI _locationDeckUI;
 
         // 增加public getter
         public HUDView HUDView => hudView;
@@ -109,6 +116,52 @@ namespace Demo.Core
                 return;
             }
             guiView.ShowPopup(panelName, modal);
+        }
+        
+        public LocationDeckUI GetLocationDeckUI()
+        {
+            if (_locationDeckUI == null)
+            {
+                if (locationDeck != null)
+                {
+                    _locationDeckUI = locationDeck.GetComponent<LocationDeckUI>();
+                }
+            }
+
+            return _locationDeckUI;
+        }
+        
+        /// <summary>
+        /// 生成Popup，json相关功能
+        /// </summary>
+        /// <param name="entity"></param>
+        public void SpawnPopup(string Id)
+        {
+            IEntityStoreService storeService = ServiceProvider.Instance.GetService<IEntityStoreService>();
+            PopupEntity entity = storeService.GetEntity(Id) as PopupEntity;
+            if (entity == null)
+            {
+                Debug.LogError("[UIManager] Entity not found.");
+            }
+
+            guiView.TryGetPanel(entity.Id, out var panel);
+            // 如果生成过，showPopup
+            if (panel != null)
+            {
+                guiView.ShowPopup(entity.Id, panel);
+            }
+            else
+            {
+                // 生成新popup
+                IFactoryService factoryService = ServiceProvider.Instance.GetService<IFactoryService>();
+                IPopup popup = factoryService.Create(entity) as IPopup;
+                // popup.Rect.SetParent(popupParent);
+                if (popup is SerializedMonoBehaviour mb)
+                {
+                    guiView.AddPopup(mb.gameObject, entity.Id);
+                }     
+            }
+           
         }
 
         public void CloseTopPopup() => guiView?.CloseTopPopup();

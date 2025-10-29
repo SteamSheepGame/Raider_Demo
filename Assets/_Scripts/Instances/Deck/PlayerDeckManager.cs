@@ -6,9 +6,12 @@ using Object = UnityEngine.Object;
 
 namespace Demo.Core
 {
+    /// <summary>
+    /// DeckManager存在是为了handle以后放卡的功能，找到不同的Deck
+    /// </summary>
     public class PlayerDeckManager: Singleton<PlayerDeckManager>
     {
-        public enum DeckKind { Play, Character, Item, Lore, Skill }
+        public enum DeckKind { Event, Character, Item, Abstract }
         [System.Serializable]
         public struct DeckPrefab
         {
@@ -46,8 +49,12 @@ namespace Demo.Core
 
         protected CharacterDeck CreateCharacterDeck()
         {
-            Transform parentCanvas = UIManager.Instance.HUDView.transform;
+            // 通过UIManager加入View
+            Transform parentCanvas = UIManager.Instance.GUIView.transform;
             var deckObject = Object.Instantiate(_deckPrefabMap[DeckKind.Character], parentCanvas);
+            deckObject.name = "Character_Deck";
+            UIManager.Instance.GUIView.AddPopup(deckObject, deckObject.name);
+            UIManager.Instance.ClosePopup(deckObject.name);
             
             CharacterDeck deck = deckObject.GetComponent<CharacterDeck>();
             // Set Position for Character Deck

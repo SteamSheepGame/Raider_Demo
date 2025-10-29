@@ -7,7 +7,8 @@ namespace Demo.Core
 {
     public class GUIButtonControl: MonoBehaviour, IPointerDownHandler
     {
-        public GameObject TypePanel;
+        [SerializeField] private string viewName;
+        // public GameObject TypePanel;
         public Button TypeButton;
         public UIManager Manager;
         public bool isEnabled = false;
@@ -28,13 +29,13 @@ namespace Demo.Core
             if(isEnabled == false)
             {
                 DisableAllOtherButtons(TypeButton);
-                Manager.ShowPopup(TypePanel.name);
+                Manager.ShowPopup(viewName);
                 isEnabled = true;
             }
             else 
             {
                 EnableAllOtherButtons(TypeButton);
-                Manager.ClosePopup(TypePanel.name);
+                Manager.ClosePopup(viewName);
                 isEnabled = false;
             }
 

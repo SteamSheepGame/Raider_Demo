@@ -15,6 +15,8 @@ namespace Demo.Core
         UnityEngine.Object Parent { get; set; }
         ICard FilledCard { get; }
 
+        void Bind(IEntity entity);
+
         //void Place(ICard card);
         public bool TryAccept(ICard card);
         void Highlight(bool on);

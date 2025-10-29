@@ -32,6 +32,11 @@ namespace Demo.Core
                 if (_rect != null) _rect = value;
             }
         }
+
+        public virtual void Bind(IEntity entity)
+        {
+            
+        }
         
         // UI
         public Sprite Background

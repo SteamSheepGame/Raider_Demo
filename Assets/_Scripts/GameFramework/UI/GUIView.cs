@@ -55,6 +55,16 @@ namespace Demo.Core
             UpdateBackdrop(modal);
         }
 
+        public void AddPopup(GameObject popup, string Id)
+        {
+            if (popup == null)
+            {
+                Debug.LogError($"[GUIView] AddPopup: popup is null.");
+            }
+            popupStack.Push(popup);
+            panels.Add(Id, popup);
+        }
+
         /// <summary>
         /// Close the top-most popup if present.
         /// </summary>

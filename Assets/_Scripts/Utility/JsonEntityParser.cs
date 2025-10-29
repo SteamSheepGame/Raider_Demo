@@ -74,15 +74,29 @@ namespace Demo.Core
                 {
                     JToken token = data.EntityContainer.Value; 
                     // Todo - Support Array in future
-                    IEntity parsedEntity = token.ToObject(type) as IEntity;
-                    if (parsedEntity != null)
+                    
+                    if (token.Type == JTokenType.Array)
                     {
-                        resultEntities.Add(parsedEntity);
+                        foreach (var child in token.Children())
+                        {
+                            IEntity parsedEntity = child.ToObject(type) as IEntity;
+                            if (parsedEntity != null)
+                                resultEntities.Add(parsedEntity);
+                        }
                     }
                     else
                     {
-                        UnityEngine.Debug.LogWarning($"[ParseHandler] Failed to parse entity of type: {type.Name}");
+                        IEntity parsedEntity = token.ToObject(type) as IEntity;
+                        if (parsedEntity != null)
+                        {
+                            resultEntities.Add(parsedEntity);
+                        }
+                        else
+                        {
+                            UnityEngine.Debug.LogWarning($"[ParseHandler] Failed to parse entity of type: {type.Name}");
+                        }    
                     }
+                    
                 }
                 catch (Exception ex)
                 {
