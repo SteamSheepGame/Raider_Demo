@@ -10,6 +10,8 @@ namespace Demo.Core
         [SerializeField] GameObject cardPrefabChar;
         [SerializeField] GameObject cardPrefabLoc;
         [SerializeField] GameObject locationPopup;
+        [SerializeField] GameObject dialoguePopup;
+        [SerializeField] GameObject cardSlotPrefab;
 
         private List<CharacterCard> cards;
         
@@ -34,11 +36,13 @@ namespace Demo.Core
             // Init FactoryService
             ServiceProvider.Instance.RegisterService<IFactoryService>(new FactoryService());
             IFactoryService factoryService = ServiceProvider.Instance.GetService<IFactoryService>();
-
+            
             //Register Factory
             factoryService.Register<CharacterEntity>(new CharacterCardFactory(cardPrefabChar));
             factoryService.Register<LocationEntity>(new LocationCardFactory(cardPrefabLoc));
-            factoryService.Register<PopupEntity>(new PopupFactory(locationPopup));
+            factoryService.Register<LocationPopupEntity>(new LocationPopupFactory(locationPopup));
+            factoryService.Register<CharacterSlotEntity>(new CharacterSlotFactory(cardSlotPrefab));
+            factoryService.Register<DialoguePopupEntity>(new DialoguePopupFactory(dialoguePopup));
            
             foreach (IEntity entity in storeService.GetAllEntities())
             {
@@ -57,6 +61,9 @@ namespace Demo.Core
                     {
                         locationDeckUI.AddCard(card);
                     }
+                } else if (entity is CharacterSlotEntity)
+                {
+                    
                 }
                 else
                 {

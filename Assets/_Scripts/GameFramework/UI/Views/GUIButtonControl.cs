@@ -28,7 +28,7 @@ namespace Demo.Core
         {
             if(isEnabled == false)
             {
-                DisableAllOtherButtons(TypeButton);
+                // DisableAllOtherButtons(TypeButton);
                 Manager.ShowPopup(viewName);
                 isEnabled = true;
             }

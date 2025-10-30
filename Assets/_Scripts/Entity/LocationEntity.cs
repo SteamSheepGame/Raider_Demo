@@ -10,7 +10,8 @@ namespace Demo.Core
         public string Label { get; set; }
         public string Description{ get; set; }
         public string Image { get; set; }
-        
+
+        public string Slots { get; set; }
         public List<ActionBinding> AvailableActions { get; set; } = new();
     }
     

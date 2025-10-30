@@ -268,6 +268,8 @@ MonoBehaviour:
   cardPrefabChar: {fileID: 4455005191783407797, guid: be032660e7e2c7a429fdaa99a2ea784b, type: 3}
   cardPrefabLoc: {fileID: 4455005191783407797, guid: 53234558b214018459d776d14b4b6d94, type: 3}
   locationPopup: {fileID: 1440063099681979737, guid: f39c3b667a518664ab605e2f0c816a3e, type: 3}
+  dialoguePopup: {fileID: 2808955048040787211, guid: 76428ab366f1cd64ebe91d5029f3df4c, type: 3}
+  cardSlotPrefab: {fileID: 7564482800105260226, guid: bcd4f61a9826eca4b8ee5b764aecc9a4, type: 3}
 --- !u!4 &937269610
 Transform:
   m_ObjectHideFlags: 0
@@ -283,11 +285,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!224 &948227390 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1624397480137635861, guid: d12fb82e780c5344d851ea2d41c18f49, type: 3}
-  m_PrefabInstance: {fileID: 5473809494435252081}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1061230519 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4812574300273507671, guid: d12fb82e780c5344d851ea2d41c18f49, type: 3}
@@ -348,7 +345,7 @@ MonoBehaviour:
     - Name: _isDontDestroyOnLoad
       Entry: 5
       Data: true
-  parent: {fileID: 948227390}
+  parent: {fileID: 5473809494435252082}
   decks:
   - kind: 1
     prefab: {fileID: 2958992459172186127, guid: 907cde593270f114f9982ec9da710a93, type: 3}
@@ -1780,6 +1777,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1061230524}
   m_SourcePrefab: {fileID: 100100000, guid: d12fb82e780c5344d851ea2d41c18f49, type: 3}
+--- !u!224 &5473809494435252082 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 317499742092212107, guid: d12fb82e780c5344d851ea2d41c18f49, type: 3}
+  m_PrefabInstance: {fileID: 5473809494435252081}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6948784013042822816
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2003,6 +2005,14 @@ PrefabInstance:
     - target: {fileID: 4335834678944562197, guid: 7ae13bf7e4c3e514297e99db63024096, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.0009825345
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565160269173842438, guid: 7ae13bf7e4c3e514297e99db63024096, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -815.3115
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565160269173842438, guid: 7ae13bf7e4c3e514297e99db63024096, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -407.65576
       objectReference: {fileID: 0}
     - target: {fileID: 4905976756281490912, guid: 7ae13bf7e4c3e514297e99db63024096, type: 3}
       propertyPath: m_AnchorMax.y

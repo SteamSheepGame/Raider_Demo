@@ -138,7 +138,7 @@ namespace Demo.Core
         public void SpawnPopup(string Id)
         {
             IEntityStoreService storeService = ServiceProvider.Instance.GetService<IEntityStoreService>();
-            PopupEntity entity = storeService.GetEntity(Id) as PopupEntity;
+            IEntity entity = storeService.GetEntity(Id);
             if (entity == null)
             {
                 Debug.LogError("[UIManager] Entity not found.");

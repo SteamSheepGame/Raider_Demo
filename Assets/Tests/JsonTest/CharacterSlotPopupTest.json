@@ -1,0 +1,14 @@
+﻿{
+  "CharacterSlot":
+  {
+     "id": "CharacterPopupSlot1",
+     "type": "Popup",
+      "AvailableActions": [
+        {
+          "id": "OpenPopup",
+          "popupid": "DialogueInDock",
+          "trigger": "onFill"
+        }
+      ]
+  }
+}
