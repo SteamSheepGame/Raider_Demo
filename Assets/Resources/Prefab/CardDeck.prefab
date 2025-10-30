@@ -59,5 +59,4 @@ MonoBehaviour:
     SerializationNodes: []
   _rect: {fileID: 366205173622641682}
   _maxCount: 10
-  xOffset: 200
-  SlotPrefab: {fileID: 7564482800105260226, guid: bcd4f61a9826eca4b8ee5b764aecc9a4, type: 3}
+  xOffset: 150

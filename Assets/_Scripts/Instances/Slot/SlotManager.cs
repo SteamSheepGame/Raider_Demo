@@ -52,11 +52,13 @@ namespace Demo.Core
 
         private bool CheckOverlap(RectTransform cardRect, RectTransform overlappingRect)
         {
-            Vector2 cardPivotWorld = cardRect.anchoredPosition;
-            Vector2 slotPivotWorld = overlappingRect.anchoredPosition;
+            Vector2 cardWorldPosition = cardRect.TransformPoint(cardRect.rect.center);
+            Vector2 slotWorldPosition = overlappingRect.TransformPoint(overlappingRect.rect.center);
+            // Vector2 cardPivotWorld = cardRect.anchoredPosition;
+            // Vector2 slotPivotWorld = overlappingRect.anchoredPosition;
 
             float thresholdDistance = Mathf.Max(cardRect.rect.height, cardRect.rect.width);
-            float distanceSqr = (cardPivotWorld - slotPivotWorld).sqrMagnitude;
+            float distanceSqr = (cardWorldPosition - slotWorldPosition).sqrMagnitude;
             
             return distanceSqr <= thresholdDistance * thresholdDistance;
         }

@@ -1,16 +1,31 @@
 ﻿{
-  "Location":
-  {
-    "id": "Dock",
-    "label": "Dock",
-    "description": "A peaceful dock.",
-    "Image": "LocationSprites/Dock",
-    "AvailableActions": [
-      {
-        "id": "OpenPopup",
-        "popupid": "DockPopup1",
-        "trigger": "OnClick"
-      }
-    ]
-  }
+  "Location":[
+    {
+      "id": "Dock",
+      "label": "Dock",
+      "description": "A peaceful dock.",
+      "Image": "LocationSprites/Dock",
+      "AvailableActions": [
+        {
+          "id": "OpenPopup",
+          "popupid": "DockPopup1",
+          "trigger": "OnClick"
+        }
+      ]
+    },
+    {
+      "id": "Dock2",
+      "label": "Dock2",
+      "description": "A sad silly little dock.",
+      "Image": "LocationSprites/Dock",
+      "AvailableActions": [
+        {
+          "id": "OpenPopup",
+          "popupid": "DockPopup1",
+          "trigger": "OnClick"
+        }
+      ]
+    }
+  ]
+  
 }

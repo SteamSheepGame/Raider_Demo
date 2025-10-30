@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 namespace Demo.Core
 {
-    public class PopupFactory: Factory<IPopup>
+    public class LocationPopupFactory: Factory<IPopup>
     {
-        public PopupFactory(GameObject prefab) : base(prefab)
+        public LocationPopupFactory(GameObject prefab) : base(prefab)
         {
         }
 
@@ -15,26 +16,26 @@ namespace Demo.Core
             }
             
             
-            PopupEntity popupEntity = entity as PopupEntity;
-            if (popupEntity == null)
+            LocationPopupEntity locationPopupEntity = entity as LocationPopupEntity;
+            if (locationPopupEntity == null)
             {
                 Debug.Log("PopupFactory::CreateInstance: entity is not PopupEntity");
                 return null;
             }
 
-            switch (popupEntity.Type)
+            switch (locationPopupEntity.Type)
             {
                 case "LocationPopup":
                 {
                     // LocationPopup popup = new LocationPopup();
                    
-                    Transform parentCanvas = UIManager.Instance.HUDView.transform;
+                    Transform parentCanvas = UIManager.Instance.GUIView.transform;
                     // Set name for UIManager/GUI
                     var popupObject = Object.Instantiate(Prefab, parentCanvas);
-                    popupObject.name = popupEntity.Id;
+                    popupObject.name = locationPopupEntity.Id;
 
                     IPopup PopupComp = popupObject.GetComponent<LocationPopup>();
-                    PopupComp.Bind(popupEntity);
+                    PopupComp.Bind(locationPopupEntity);
                     return PopupComp;
                 }
             }

@@ -1,0 +1,45 @@
+﻿{
+  "DialoguePopup":[
+    {
+      "Id": "DialogueInDock",
+      "Type": "DialoguePopup",
+      "Title": "Dialogue",
+      "Dialogues": [
+        {
+          "Id": "Dialogue_001",
+          "speaker": "Narrator",
+          "narration": "As the sun sets, you walk into the room and find a mysterious letter on the table.",
+          "text": "You open the letter and begin reading. It says, 'You must make a choice: take the left path, or the right.'",
+          "replies": [
+            {
+              "id": "reply_001",
+              "buttonText": "Take the left path",
+              "text": "Take the left path.",
+              "nextDialogueId": "Dialogue_002"
+            },
+            {
+              "id": "reply_002",
+              "buttonText": "Take the right path.",
+              "text": "Take the right path.",
+              "nextDialogueId": "Dialogue_003"
+            }
+          ]
+        },
+        {
+          "Id": "Dialogue_002",
+          "speaker": "Narrator",
+          "narration": "As the sun sets, you walk into the room and find a mysterious letter on the table.",
+          "text": "You feel a chill as you decide your fate. Left Path it is then.",
+          "replies": []
+        },
+        {
+          "Id": "Dialogue_003",
+          "speaker": "Narrator",
+          "narration": "As the sun sets, you walk into the room and find a mysterious letter on the table.",
+          "text": "You feel a warmth as you decide your fate. Right path it is then.",
+          "replies": []
+        }
+      ]
+    }
+  ]
+}

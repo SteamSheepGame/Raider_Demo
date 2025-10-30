@@ -5,9 +5,9 @@ namespace Demo.Core
 {
     public class BasePopup: SerializedMonoBehaviour, IPopup
     {
-        [SerializeField, Required] public GameObject PopupPrefab;
+        // [SerializeField, Required] public GameObject PopupPrefab;
         
-        protected PopupEntity PopupEntity;
+        protected LocationPopupEntity LocationPopupEntity;
         
         private RectTransform _rect;
         public RectTransform Rect => _rect ??= GetComponent<RectTransform>();
@@ -19,7 +19,7 @@ namespace Demo.Core
 
         public virtual void Bind(IEntity entity)
         {
-            PopupEntity = entity as PopupEntity;
+            LocationPopupEntity = entity as LocationPopupEntity;
         }
 
     }
