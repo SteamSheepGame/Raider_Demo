@@ -85,6 +85,15 @@ namespace Demo.Core
             IsSelected = on;
         }
 
+        public void ReturnCard()
+        {
+            if (FilledCard != null)
+            {
+                FilledCard.AddToDeck();
+                Clear();
+            }
+        }
+
         public void Clear()
         {
             IsFilled = false;

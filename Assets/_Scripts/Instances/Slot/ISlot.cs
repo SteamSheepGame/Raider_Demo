@@ -21,6 +21,8 @@ namespace Demo.Core
         public bool TryAccept(ICard card);
         void Highlight(bool on);
         void Clear();
+
+        void ReturnCard();
         
         // Events
         event Action<ISlot> HoveredEnd;
