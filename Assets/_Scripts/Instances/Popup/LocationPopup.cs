@@ -9,6 +9,9 @@ namespace Demo.Core
         [SerializeField, Required] TextMeshProUGUI locationName;
         [SerializeField, Required] TextMeshProUGUI locationDescription;
         [SerializeField, Required] private RectTransform SlotRect;
+        
+        private ISlot currSlot;
+        
         public override void Bind(IEntity entity)
         {
             base.Bind(entity);
@@ -49,11 +52,20 @@ namespace Demo.Core
             // Position Slot
             if (slot != null)
             {
+                currSlot = slot;
                 // slot.Rect.anchoredPosition = SlotRect.anchoredPosition;
                 slot.Rect.parent = SlotRect;
                 slot.Rect.anchoredPosition = Vector2.zero;
             }
 
+        }
+        
+        public override void OnPopupClosed()
+        {
+            if(currSlot != null)
+            {
+                currSlot.ReturnCard();
+            }
         }
     }
 }

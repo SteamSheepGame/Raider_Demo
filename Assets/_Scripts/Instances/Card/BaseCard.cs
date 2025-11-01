@@ -151,6 +151,11 @@ namespace Demo.Core
             
         }
 
+        public virtual void AddToDeck()
+        {
+            
+        }
+
         #region Drag
 
         void UnityEngine.EventSystems.IBeginDragHandler.OnBeginDrag(PointerEventData Data)

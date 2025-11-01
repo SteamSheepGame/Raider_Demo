@@ -21,6 +21,10 @@ namespace Demo.Core
         {
             LocationPopupEntity = entity as LocationPopupEntity;
         }
+        
+        public virtual void OnPopupClosed()
+        {
+        }
 
     }
 }

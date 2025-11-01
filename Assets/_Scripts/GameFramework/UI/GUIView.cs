@@ -73,7 +73,12 @@ namespace Demo.Core
             if (popupStack.Count == 0) return;
 
             var top = popupStack.Pop();
-            if (top != null) top.SetActive(false);
+            if (top != null)
+            {
+                top.SetActive(false);
+                var popup = top.GetComponent<IPopup>();
+                popup?.OnPopupClosed();
+            }
             UpdateBackdrop(IsModalExpectedForTop());
         }
 
@@ -83,7 +88,8 @@ namespace Demo.Core
         public void ClosePopup(string panelName)
         {
             if (string.IsNullOrEmpty(panelName)) return;
-
+            
+            GameObject target = null;
             // If top matches, pop quickly.
             if (popupStack.Count > 0 && popupStack.Peek() != null && popupStack.Peek().name == panelName)
             {
@@ -93,7 +99,6 @@ namespace Demo.Core
 
             // Otherwise rebuild stack without the target.
             var buffer = new Stack<GameObject>();
-            GameObject target = null;
 
             while (popupStack.Count > 0)
             {
@@ -107,7 +112,12 @@ namespace Demo.Core
             }
             while (buffer.Count > 0) popupStack.Push(buffer.Pop());
 
-            if (target != null) target.SetActive(false);
+            if (target != null)
+            {
+                target.SetActive(false);
+                var popup = target.GetComponent<IPopup>();
+                popup?.OnPopupClosed();
+            }
             UpdateBackdrop(IsModalExpectedForTop());
         }
 

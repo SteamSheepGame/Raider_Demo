@@ -42,62 +42,72 @@ namespace Demo.Core
             StartDialogue(dialoguePopupEntity.Dialogues[0]);
         }
 
+        /// <summary>
+        /// 回复
+        /// </summary>
+        /// <param name="index"></param>
         private void Reply(int index)
         {
             if (currDialogue != null && currDialogue.Replies.Count > 1)
             {
+                // 生成回复
                 Replies reply = currDialogue.Replies[index];
                 GameObject dialogueInstance = Instantiate(dialoguePrefab, scrollAreaRect);
                 TextMeshProUGUI speakerName = dialogueInstance.transform.Find("SpeakerName").GetComponent<TextMeshProUGUI>();
                 TextMeshProUGUI dialogueText = dialogueInstance.transform.Find("DialogueText").GetComponent<TextMeshProUGUI>();
                 // speakerName.text = currDialogue.Replies[0].Speaker;
                 dialogueText.text = reply.Text;
-                
+                // 开始回复
                 StartDialogue(Dialogues[reply.NextDialogueId]);
             }
             else
             {
+                // 隐藏按钮
                 FirstChoiceButton.gameObject.SetActive(false);
                 SecondChoiceButton.gameObject.SetActive(false);
-                // Debug.LogError("No reply found.");
             }
         }
 
+        /// <summary>
+        /// 开始对话
+        /// </summary>
+        /// <param name="currentDialogue"></param>
         private void StartDialogue(DialogueBinding currentDialogue)
         {
+            
             if (currentDialogue == null)
             {
                 Debug.LogError("LocationPopup StartDialogue error");
                 return;
             }
+            // 设置本地变量
             currDialogue = currentDialogue;
-            
+            // 隐藏回复按钮
             FirstChoiceButton.gameObject.SetActive(false);
             SecondChoiceButton.gameObject.SetActive(false);
-            // FirstChoiceButton.enabled = false;
-            // SecondChoiceButton.enabled = false;
-            
+            // 旁白
             narration.text = currentDialogue.Narration;
-            
-            if (currentDialogue.Replies.Count > 1)
-            {
-                FirstChoiceButton.GetComponentInChildren<TextMeshProUGUI>().text = currentDialogue.Replies[0]?.ButtonText;
-                SecondChoiceButton.GetComponentInChildren<TextMeshProUGUI>().text = currentDialogue.Replies[1]?.ButtonText;
-            }
-            
+            // 对话者
             GameObject dialogueInstance = Instantiate(dialoguePrefab, scrollAreaRect);
             TextMeshProUGUI speakerName = dialogueInstance.transform.Find("SpeakerName").GetComponent<TextMeshProUGUI>();
             TextMeshProUGUI dialogueText = dialogueInstance.transform.Find("DialogueText").GetComponent<TextMeshProUGUI>();
             speakerName.text = currentDialogue.Speaker;
             dialogueText.text = currentDialogue.Text;
-            
+            // 回复
             StartReply();
         }
 
         private void StartReply()
         {
-            FirstChoiceButton.gameObject.SetActive(true);
-            SecondChoiceButton.gameObject.SetActive(true);
+            // 如有reply，显示button
+            if (currDialogue.Replies.Count > 1)
+            {
+                FirstChoiceButton.GetComponentInChildren<TextMeshProUGUI>().text = currDialogue.Replies[0]?.ButtonText;
+                SecondChoiceButton.GetComponentInChildren<TextMeshProUGUI>().text = currDialogue.Replies[1]?.ButtonText;
+                
+                FirstChoiceButton.gameObject.SetActive(true);
+                SecondChoiceButton.gameObject.SetActive(true);
+            }
         }
         
         

@@ -25,6 +25,8 @@ namespace Demo.Core
         void Expand();                  
         void Highlight(bool on);        
         void Select(bool on);
+
+        void AddToDeck();
         
         void PlaceCard(ISlot slot);
         // void MoveTo(Vector3 worldPos, float duration = 0.15f); 

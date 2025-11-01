@@ -16,5 +16,17 @@ namespace Demo.Core
             Label = Character.Label;
             Background = TryLoadSpriteFromResources(Character.Image);
         }
+
+        public override void AddToDeck()
+        {
+            if (ParentDeck != null)
+            {
+                ParentDeck.TryAdd(this);
+            }
+            else
+            {
+                //TODO
+            }
+        }
     }
 }

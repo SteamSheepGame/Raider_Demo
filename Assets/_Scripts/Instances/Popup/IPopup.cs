@@ -5,5 +5,6 @@ namespace Demo.Core
     public interface IPopup: IInstance
     { 
         RectTransform Rect { get; }
+        void OnPopupClosed();
     }
 }
