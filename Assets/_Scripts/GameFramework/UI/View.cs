@@ -20,6 +20,8 @@ namespace Demo.Core
 
         [SerializeField, TitleGroup("Panels (Optional Prebound)")]
         protected List<GameObject> preboundPanels = new();
+
+        public bool IsDestroyOnLoad = false;
         
 
         protected readonly Dictionary<string, GameObject> panels = new();
@@ -57,6 +59,12 @@ namespace Demo.Core
             {
                 _rect = canvas.GetComponent<RectTransform>();
             }
+
+            if (IsDestroyOnLoad == false)
+            {
+                DontDestroyOnLoad(this.gameObject);
+            }
+            
         }
 
 		protected virtual RectTransform GetRect()
