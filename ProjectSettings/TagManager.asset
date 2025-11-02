@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ConstantView
   - TempView
+  - GameBoard
   layers:
   - Default
   - TransparentFX
