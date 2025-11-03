@@ -19,7 +19,7 @@ namespace Demo.Core
         {
             if(entity == null) Debug.Log("Creating instance of CharacterCard without entity!");
             // Get UI Canvas
-            Transform parentCanvas = UIManager.Instance.HUDView.transform;
+            Transform parentCanvas = UIManager.Instance.GUIView.transform;
             var cardObject = Object.Instantiate(Prefab, parentCanvas);
             
             // 初始化ICard

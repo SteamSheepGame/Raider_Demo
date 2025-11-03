@@ -20,8 +20,8 @@ namespace Demo.Core
 
         public void OpenScenel()
         {
+            Destroy(UIManager.Instance.gameObject);
             SceneManager.LoadScene("AlexTestScene");
-
         }
     }
 }
