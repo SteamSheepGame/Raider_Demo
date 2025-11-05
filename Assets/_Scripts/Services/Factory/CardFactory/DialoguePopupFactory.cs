@@ -11,7 +11,7 @@ namespace Demo.Core
         {
             if (entity == null)
             {
-                Debug.Log("Creating new instance of PopupFactory, but entity is null");
+                Debug.Log("Creating new instance of DialoguePopupFactory, but entity is null");
             }
             
             

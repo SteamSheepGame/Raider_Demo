@@ -1,0 +1,10 @@
+﻿{
+  "CharacterPopup": [
+    {
+      "Id": "TestCharacter1Detail",
+      "Type": "CharacterPopup",
+      "Name": "CharacterTest1",
+      "Description": "This is a little guy"
+    }
+  ]
+}

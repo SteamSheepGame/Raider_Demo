@@ -233,6 +233,7 @@ MonoBehaviour:
   locationPopup: {fileID: 1440063099681979737, guid: f39c3b667a518664ab605e2f0c816a3e, type: 3}
   dialoguePopup: {fileID: 2808955048040787211, guid: 76428ab366f1cd64ebe91d5029f3df4c, type: 3}
   cardSlotPrefab: {fileID: 7564482800105260226, guid: bcd4f61a9826eca4b8ee5b764aecc9a4, type: 3}
+  characterPopup: {fileID: 1440063099681979737, guid: 52f76de4716c01b40977a69fba57f611, type: 3}
 --- !u!4 &937269610
 Transform:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 namespace Demo.Core
 {
@@ -12,6 +13,7 @@ namespace Demo.Core
         [SerializeField] GameObject locationPopup;
         [SerializeField] GameObject dialoguePopup;
         [SerializeField] GameObject cardSlotPrefab;
+        [SerializeField] GameObject characterPopup;
 
         private List<CharacterCard> cards;
         
@@ -43,6 +45,7 @@ namespace Demo.Core
             factoryService.Register<LocationPopupEntity>(new LocationPopupFactory(locationPopup));
             factoryService.Register<CharacterSlotEntity>(new CharacterSlotFactory(cardSlotPrefab));
             factoryService.Register<DialoguePopupEntity>(new DialoguePopupFactory(dialoguePopup));
+            factoryService.Register<CharacterPopupEntity>(new CharacterPopupFactory(characterPopup));
            
             foreach (IEntity entity in storeService.GetAllEntities())
             {
