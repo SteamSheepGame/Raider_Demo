@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 namespace Demo.Core
 {
     [DataImportable("character")]
@@ -12,6 +12,7 @@ namespace Demo.Core
         public string Description { get; set; }
 
         public CharacterAttributes Attributes { get; set; }
+        public List<ActionBinding> AvailableActions { get; set; } = new();
     }
 
     [Serializable]

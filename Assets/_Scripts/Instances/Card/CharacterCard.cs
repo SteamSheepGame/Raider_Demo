@@ -15,6 +15,14 @@ namespace Demo.Core
             // 初始化卡片UI
             Label = Character.Label;
             Background = TryLoadSpriteFromResources(Character.Image);
+            
+            foreach (var Action in Character.AvailableActions)
+            {
+                if (Action.Trigger.Equals("OnClick", StringComparison.OrdinalIgnoreCase))
+                {
+                    OnClicked += (_) => ServiceProvider.Instance.GetService<IActionService>().ExecuteAction(Action);
+                }
+            }
         }
 
         public override void AddToDeck()

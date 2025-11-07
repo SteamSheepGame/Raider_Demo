@@ -16,7 +16,14 @@
           "history": 0,
           "technology": 0,
           "sanity": 0
-        }
+        },
+        "AvailableActions": [
+          {
+            "id": "OpenPopup",
+            "popupid": "TestCharacter1Detail",
+            "trigger": "OnClick"
+          }
+        ]
       },
       {
         "id": "1236",
@@ -33,7 +40,14 @@
           "history": 0,
           "technology": 0,
           "sanity": 0
-        }
+        },
+        "AvailableActions": [
+          {
+            "id": "OpenPopup",
+            "popupid": "TestCharacter1Detail",
+            "trigger": "OnClick"
+          }
+        ]
       }
     ]
 }

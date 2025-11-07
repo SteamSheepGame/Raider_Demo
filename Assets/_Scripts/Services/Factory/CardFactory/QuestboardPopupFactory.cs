@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
 namespace Demo.Core
 {
-    public class LocationPopupFactory: Factory<IPopup>
+    public class QuestboardPopupFactory: Factory<IPopup>
     {
-        public LocationPopupFactory(GameObject prefab) : base(prefab)
+        public QuestboardPopupFactory(GameObject prefab) : base(prefab)
         {
         }
 
@@ -16,8 +15,8 @@ namespace Demo.Core
             }
             
             
-            LocationPopupEntity locationPopupEntity = entity as LocationPopupEntity;
-            if (locationPopupEntity == null)
+            QuestboardPopupEntity questPopupEntity = entity as QuestboardPopupEntity;
+            if (questPopupEntity == null)
             {
                 Debug.Log("PopupFactory::CreateInstance: entity is not PopupEntity");
                 return null;
@@ -26,14 +25,11 @@ namespace Demo.Core
             Transform parentCanvas = UIManager.Instance.GUIView.transform;
             // Set name for UIManager/GUI
             var popupObject = Object.Instantiate(Prefab, parentCanvas);
-            popupObject.name = locationPopupEntity.Id;
+            popupObject.name = questPopupEntity.Id;
 
-            IPopup PopupComp = popupObject.GetComponent<LocationPopup>();
-            PopupComp.Bind(locationPopupEntity);
+            IPopup PopupComp = popupObject.GetComponent<QuestboardPopup>();
+            PopupComp.Bind(questPopupEntity);
             return PopupComp;
-           
-
-            return null;
         }
     }
 }

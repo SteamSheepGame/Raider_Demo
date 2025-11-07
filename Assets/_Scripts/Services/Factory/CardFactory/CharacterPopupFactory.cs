@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
+
 namespace Demo.Core
 {
-    public class LocationPopupFactory: Factory<IPopup>
+    public class CharacterPopupFactory: Factory<IPopup>
     {
-        public LocationPopupFactory(GameObject prefab) : base(prefab)
+        public CharacterPopupFactory(GameObject prefab) : base(prefab)
         {
         }
 
@@ -12,12 +12,11 @@ namespace Demo.Core
         {
             if (entity == null)
             {
-                Debug.Log("Creating new instance of LocationPopupFactory, but entity is null");
+                Debug.Log("Creating new instance of CharacterPopupFactory, but entity is null");
             }
             
-            
-            LocationPopupEntity locationPopupEntity = entity as LocationPopupEntity;
-            if (locationPopupEntity == null)
+            CharacterPopupEntity characterPopupEntity = entity as CharacterPopupEntity;
+            if (characterPopupEntity == null)
             {
                 Debug.Log("PopupFactory::CreateInstance: entity is not PopupEntity");
                 return null;
@@ -26,14 +25,11 @@ namespace Demo.Core
             Transform parentCanvas = UIManager.Instance.GUIView.transform;
             // Set name for UIManager/GUI
             var popupObject = Object.Instantiate(Prefab, parentCanvas);
-            popupObject.name = locationPopupEntity.Id;
+            popupObject.name = characterPopupEntity.Id;
 
-            IPopup PopupComp = popupObject.GetComponent<LocationPopup>();
-            PopupComp.Bind(locationPopupEntity);
+            IPopup PopupComp = popupObject.GetComponent<CharacterPopup>();
+            PopupComp.Bind(characterPopupEntity);
             return PopupComp;
-           
-
-            return null;
         }
     }
 }
