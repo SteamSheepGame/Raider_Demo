@@ -53,11 +53,8 @@ namespace Demo.Core
             {
                 if (entity is CharacterEntity)
                 {
-                    for (int i = 0; i < 2; i++)
-                    {
-                        CharacterCard card = factoryService.Create(entity) as CharacterCard;
-                        cards.Add(card);
-                    }
+                    CharacterCard card = factoryService.Create(entity) as CharacterCard;
+                    cards.Add(card);
                 } else if (entity is LocationEntity)
                 {
                     LocationCard card = factoryService.Create(entity) as LocationCard;

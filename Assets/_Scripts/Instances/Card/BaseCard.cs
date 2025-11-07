@@ -25,7 +25,12 @@ namespace Demo.Core
         [SerializeField] private float StartingAlpha = 1f;
         [SerializeField] private float SelectedAlpha = 0.5f;
         
+        private float lastClickTime = 0f;
+        private float doubleClickThreshold = 0.3f;
+
+        
         public event Action<BaseCard<TCard>> OnClicked;
+        public event Action<BaseCard<TCard>> OnDoubleClicked;
         public IEntity Entity { get; protected set;}
 
         public ISlot OccupiedSlot { get; private set; }
@@ -249,6 +254,13 @@ namespace Demo.Core
             if(!IsClickable)  return;
             Select(true);
             
+            if (Time.time - lastClickTime < doubleClickThreshold)
+            {
+                Debug.Log("Double-click detected on UI!");
+                OnDoubleClicked?.Invoke(this);
+            }
+
+            lastClickTime = Time.time;
             OnClicked?.Invoke(this);
         }
         

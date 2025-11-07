@@ -20,7 +20,7 @@ namespace Demo.Core
             {
                 if (Action.Trigger.Equals("OnClick", StringComparison.OrdinalIgnoreCase))
                 {
-                    OnClicked += (_) => ServiceProvider.Instance.GetService<IActionService>().ExecuteAction(Action);
+                    OnDoubleClicked += (_) => ServiceProvider.Instance.GetService<IActionService>().ExecuteAction(Action);
                 }
             }
         }
