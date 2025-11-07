@@ -1,0 +1,73 @@
+﻿{
+  "DialoguePopup":[
+    {
+      "Id": "SalazarRecruitDialogue",
+      "Type": "DialoguePopup",
+      "Title": "Dialogue",
+      "Dialogues": [
+        {
+          "Id": "Dialogue_001",
+          "speaker": "Narrator",
+          "narration": "You look around the area, ignoring the pungent air. A cloaked figure catches your eye—shifting, watchful. In a breath, he's before you, pressing a crumpled note into your hand before vanishing around the corner. Unfolded, it reveals a single address, scrawled in faint pencil.",
+          "text": "Check out the source of disturbance.",
+          "replies": [
+            {
+              "id": "reply_001",
+              "buttonText": "Go to the address.",
+              "text": "You asked around, reaching the address.",
+              "nextDialogueId": "Dialogue_002"
+            }
+          ]
+        },
+        {
+          "Id": "Dialogue_002",
+          "speaker": "Narrator",
+          "narration": "The cloaked man looks up from his notebook as you approach. 'I know who you are,' he says, tucking the book away. 'The captain seeking answers beyond the horizon. Let me sail with you. I'll make the venture worth your while—in gold.'",
+          "text": "Check out the source of disturbance.",
+          "replies": [
+            {
+              "id": "reply_002",
+              "buttonText": "...",
+              "text": "You look at him with suspicion inside your eyes.",
+              "nextDialogueId": "Dialogue_003"
+            },
+            {
+              "id": "reply_003",
+              "buttonText": "Accept his offer",
+              "text": "You accept his offer. Is this really an good idea?",
+              "nextDialogueId": "Dialogue_004"
+            }
+          ]
+        },
+        {
+          "Id": "Dialogue_003",
+          "speaker": "Narrator",
+          "narration": "He steps closer, the offer of gold heavy in his tone. You remain silent. His eyes narrow briefly before he melts back into the shadows, leaving the proposition hanging in the air between you.",
+          "text": "Check out the source of disturbance.",
+          "replies": [
+            {
+              "id": "reply_004",
+              "buttonText": "...",
+              "text": "You are not convinced enought to accept his offer..",
+              "nextDialogueId": ""
+            },
+            {
+              "id": "reply_005",
+              "buttonText": "Accept his offer",
+              "text": "You accept his offer. Is this really an good idea?",
+              "nextDialogueId": "Dialogue_004"
+            }
+          ]
+        },
+        {
+          "Id": "Dialogue_004",
+          "speaker": "Narrator",
+          "narration": "'A wise choice,' he says, a rare smile touching his lips. 'I am Salazar.' He presses a heavy pouch into your hand. 'You'll have no cause to regret this.'",
+          "text": "Check out the source of disturbance.",
+          "replies": [
+          ]
+        }
+      ]
+    }
+  ]
+}

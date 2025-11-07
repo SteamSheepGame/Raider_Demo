@@ -40,7 +40,79 @@
           "history": 0,
           "technology": 0,
           "sanity": 0
-        },
+        }，
+        "AvailableActions": [
+          {
+            "id": "OpenPopup",
+            "popupid": "TestCharacter1Detail",
+            "trigger": "OnClick"
+          }
+        ]
+      },
+      {
+        "id": "1238",
+        "label": "Orphila",
+        "aspect": "Character",
+        "image": "CharacterSprites/Test1",
+        "description": "A confident and assertive woman who is a non believer. She is the Captain of the Ship called JUPITER.",
+        "attributes": {
+          "intellect": 0,
+          "religion": 0,
+          "strength": 0,
+          "charm": 3,
+          "occult": 0,
+          "history": 0,
+          "technology": 0,
+          "sanity": 0
+        }，
+        "AvailableActions": [
+          {
+            "id": "OpenPopup",
+            "popupid": "TestCharacter1Detail",
+            "trigger": "OnClick"
+          }
+        ]
+      },
+      {
+        "id": "1240",
+        "label": "Salazar",
+        "aspect": "Character",
+        "image": "CharacterSprites/Test1",
+        "description": "A cunning and educated man who worships the Seeker and the Magician. He is a Journalist who is looking for something to write on his next “Big Hit”.",
+        "attributes": {
+          "intellect": 0,
+          "religion": 0,
+          "strength": 0,
+          "charm": 3,
+          "occult": 0,
+          "history": 0,
+          "technology": 0,
+          "sanity": 0
+        }，
+        "AvailableActions": [
+          {
+            "id": "OpenPopup",
+            "popupid": "TestCharacter1Detail",
+            "trigger": "OnClick"
+          }
+        ]
+      },
+      {
+        "id": "1242",
+        "label": "Jupiter",
+        "aspect": "Character",
+        "image": "CharacterSprites/Test1",
+        "description": "A careful and persuasive woman who worships the Twins. She is a missionary of the Order of Mythos",
+        "attributes": {
+          "intellect": 0,
+          "religion": 0,
+          "strength": 0,
+          "charm": 3,
+          "occult": 0,
+          "history": 0,
+          "technology": 0,
+          "sanity": 0
+        }，
         "AvailableActions": [
           {
             "id": "OpenPopup",

@@ -1,9 +1,9 @@
 ﻿{
   "Location":
   {
-    "id": "Pub",
-    "label": "Pub",
-    "description": "A crowded pub.",
+    "id": "Tavern",
+    "label": "Tavern",
+    "description": "A tavern bustling with business. This is where people drink, and exchange secrets.",
     "Image": "LocationSprites/Pub",
     "AvailableActions": [
       {
