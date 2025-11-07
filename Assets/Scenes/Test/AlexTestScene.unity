@@ -233,6 +233,8 @@ MonoBehaviour:
   locationPopup: {fileID: 1440063099681979737, guid: f39c3b667a518664ab605e2f0c816a3e, type: 3}
   dialoguePopup: {fileID: 2808955048040787211, guid: 76428ab366f1cd64ebe91d5029f3df4c, type: 3}
   cardSlotPrefab: {fileID: 7564482800105260226, guid: bcd4f61a9826eca4b8ee5b764aecc9a4, type: 3}
+  characterPopup: {fileID: 1440063099681979737, guid: 52f76de4716c01b40977a69fba57f611, type: 3}
+  questPopupPrefab: {fileID: 2808955048040787211, guid: 635ec92ea4b3b3343ab896b17e1f84a5, type: 3}
 --- !u!4 &937269610
 Transform:
   m_ObjectHideFlags: 0
@@ -840,6 +842,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1247534377}
     - target: {fileID: 6035179538184274741, guid: 7ae13bf7e4c3e514297e99db63024096, type: 3}
+      propertyPath: QuestboardButton
+      value: 
+      objectReference: {fileID: 6948784013042822819}
+    - target: {fileID: 6035179538184274741, guid: 7ae13bf7e4c3e514297e99db63024096, type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 6035179538184274741, guid: 7ae13bf7e4c3e514297e99db63024096, type: 3}
@@ -948,6 +954,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4585022680251194865, guid: 7ae13bf7e4c3e514297e99db63024096, type: 3}
   m_PrefabInstance: {fileID: 6948784013042822816}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6948784013042822819 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4898736105926215598, guid: 7ae13bf7e4c3e514297e99db63024096, type: 3}
+  m_PrefabInstance: {fileID: 6948784013042822816}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

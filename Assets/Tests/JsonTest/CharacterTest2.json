@@ -15,6 +15,13 @@
         "history": 10,
         "technology": 10,
         "sanity": 10
-      }
+      },
+      "AvailableActions": [
+        {
+          "id": "OpenPopup",
+          "popupid": "TestCharacter1Detail",
+          "trigger": "OnClick"
+        }
+      ]
     }
 }
