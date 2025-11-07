@@ -4,15 +4,15 @@
       "Id": "DockPopup1",
       "Type": "LocationPopup",
       "Title": "Dock",
-      "Description": "On the dock, you see two people",
+      "Description": "Vessels of every shape crowd the docks as sailors haul exotic cargo. The air hangs thick with sweat and salt. A fine spot for sea views on a rest day—but you've arrived at a bustling hour.",
       "Characters": ["DockPerson1", "DockPerson2"],
       "Slots": ["CharacterPopupSlot1"]
     },
     {
       "Id": "PubPopup1",
       "Type": "LocationPopup",
-      "Title": "Pub",
-      "Description": "This is a silly little pub",
+      "Title": "Tavern",
+      "Description": "This is the only taven in town, anyone can find comfort here. Sleep, drink, food, or...something else?",
       "Characters": ["DockPerson1", "DockPerson2"],
       "Slots": ["CharacterPopupSlot1"]
     }
