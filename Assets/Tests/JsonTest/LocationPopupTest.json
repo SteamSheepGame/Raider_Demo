@@ -14,7 +14,7 @@
       "Title": "Tavern",
       "Description": "This is the only taven in town, anyone can find comfort here. Sleep, drink, food, or...something else?",
       "Characters": ["DockPerson1", "DockPerson2"],
-      "Slots": ["CharacterPopupSlot1"]
+      "Slots": ["CharacterPopupSlot2"]
     }
   ]
 }

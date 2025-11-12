@@ -22,7 +22,7 @@
         {
           "Id": "Dialogue_002",
           "speaker": "Narrator",
-          "narration": "You approach the woman and the barkeep, looking to learn more about this town. During the conversation with them ,the unknown woman revealing herself as the famed Captain Orphila Fay. 'Well,' she says, her eyes measuring you. 'What brings a naval officer to a small fishing town like this?'",
+          "narration": "The tavern's warmth envelops you, rich with the scent of spiced ale and stew. In the dim light, a woman speaks with the barkeep. Their easy familiarity hinting at a bond deeper than mere acquaintance.",
           "text": "You approach the woman and the barkeep, looking to learn more about this town. During the conversation with them ,the unknown woman revealing herself as the famed Captain Orphila Fay. 'Well,' she says, her eyes measuring you. 'What brings a naval officer to a small fishing town like this?",
           "replies": [
             {
@@ -42,7 +42,7 @@
         {
           "Id": "Dialogue_003",
           "speaker": "Narrator",
-          "narration": "You sidestep her question with pleasantries. Soon, her gaze drifts past you. 'A word another time, perhaps,' she says, turning back to her drink. The conversation is over.",
+          "narration": "The tavern's warmth envelops you, rich with the scent of spiced ale and stew. In the dim light, a woman speaks with the barkeep. Their easy familiarity hinting at a bond deeper than mere acquaintance.",
           "text": "You sidestep her question with pleasantries. Soon, her gaze drifts past you. 'A word another time, perhaps,' she says, turning back to her drink. The conversation is over.",
           "replies": [
           ]
@@ -50,7 +50,7 @@
         {
           "Id": "Dialogue_004",
           "speaker": "Narrator",
-          "narration": "You speak of recruitment. Her eyes sharpen with interest. 'I'll hear your terms,' she says, 'but know this - Orphila Fay serves no nameless patron, and my service never comes cheap.'",
+          "narration": "The tavern's warmth envelops you, rich with the scent of spiced ale and stew. In the dim light, a woman speaks with the barkeep. Their easy familiarity hinting at a bond deeper than mere acquaintance.",
           "text": "You speak of recruitment. Her eyes sharpen with interest. 'I'll hear your terms,' she says, 'but know this - Orphila Fay serves no nameless patron, and my service never comes cheap.",
           "replies": [
             {
