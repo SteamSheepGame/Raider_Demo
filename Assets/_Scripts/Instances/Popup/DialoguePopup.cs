@@ -48,7 +48,7 @@ namespace Demo.Core
         /// <param name="index"></param>
         private void Reply(int index)
         {
-            if (currDialogue != null && currDialogue.Replies.Count > 1)
+            if (currDialogue != null && currDialogue.Replies.Count > 0)
             {
                 // 生成回复
                 Replies reply = currDialogue.Replies[index];
@@ -100,12 +100,15 @@ namespace Demo.Core
         private void StartReply()
         {
             // 如有reply，显示button
-            if (currDialogue.Replies.Count > 1)
+            if (currDialogue.Replies.Count > 0)
             {
                 FirstChoiceButton.GetComponentInChildren<TextMeshProUGUI>().text = currDialogue.Replies[0]?.ButtonText;
-                SecondChoiceButton.GetComponentInChildren<TextMeshProUGUI>().text = currDialogue.Replies[1]?.ButtonText;
-                
                 FirstChoiceButton.gameObject.SetActive(true);
+            }
+
+            if (currDialogue.Replies.Count > 1)
+            {
+                SecondChoiceButton.GetComponentInChildren<TextMeshProUGUI>().text = currDialogue.Replies[1]?.ButtonText;
                 SecondChoiceButton.gameObject.SetActive(true);
             }
         }

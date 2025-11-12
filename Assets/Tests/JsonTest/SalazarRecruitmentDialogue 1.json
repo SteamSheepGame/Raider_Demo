@@ -48,7 +48,7 @@
             {
               "id": "reply_004",
               "buttonText": "...",
-              "text": "You are not convinced enought to accept his offer..",
+              "text": "You are not convinced enough to accept his offer..",
               "nextDialogueId": ""
             },
             {

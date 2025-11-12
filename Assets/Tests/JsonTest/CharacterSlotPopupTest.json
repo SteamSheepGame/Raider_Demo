@@ -1,6 +1,6 @@
 ﻿{
-  "CharacterSlot":
-  {
+  "CharacterSlot": [
+    {
      "id": "CharacterPopupSlot1",
      "type": "Popup",
       "AvailableActions": [
@@ -10,5 +10,17 @@
           "trigger": "onFill"
         }
       ]
-  }
+  },
+    {
+      "id": "CharacterPopupSlot2",
+      "type": "Popup",
+      "AvailableActions": [
+        {
+          "id": "OpenPopup",
+          "popupid": "OrphilaRecruitDialogue",
+          "trigger": "onFill"
+        }
+      ]
+    }
+  ]
 }

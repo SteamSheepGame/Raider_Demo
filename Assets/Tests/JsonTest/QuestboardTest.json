@@ -24,6 +24,13 @@
         "Description": "Yo whats up? this is the 3rd",
         "NextQuestId": "Yohohohohohhohohohoh",
         "QuestState": "Ongoing"
+      },
+      {
+        "Id": "BeginerQuest4",
+        "Title": "Welcome to the sea4",
+        "Description": "Yo whats up? this is the 3rd",
+        "NextQuestId": "Yohohohohohhohohohoh",
+        "QuestState": "Ongoing"
       }
     ]
   }
