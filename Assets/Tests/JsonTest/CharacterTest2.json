@@ -1,27 +1,3 @@
 ﻿{
-  "Character": 
-    {
-      "id": "1235",
-      "label": "TestCharacter2",
-      "aspect": "Character",
-      "image": "CharacterSprites/Test1",
-      "description": "This is a crazy character!",
-      "attributes": {
-        "intellect": 10,
-        "religion": 10,
-        "strength": 10,
-        "charm": 3,
-        "occult": 10,
-        "history": 10,
-        "technology": 10,
-        "sanity": 10
-      },
-      "AvailableActions": [
-        {
-          "id": "OpenPopup",
-          "popupid": "TestCharacter1Detail",
-          "trigger": "OnClick"
-        }
-      ]
-    }
+    
 }

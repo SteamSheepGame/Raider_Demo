@@ -1,0 +1,13 @@
+﻿{
+  "Scenes": 
+          [
+            {
+              "id": "Scene1",
+              "dialogue": "IntroDialogue_1",
+              "locations": [
+                "Tavern",
+                "Dock"
+              ]
+            }
+          ]
+}

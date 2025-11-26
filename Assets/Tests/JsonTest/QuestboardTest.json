@@ -12,23 +12,16 @@
         "QuestState": "Ongoing"
       },
       {
+        "Id": "BeginerQuest1",
+        "Title": "Welcome to the sea2",
+        "Description": "Yo whats up?",
+        "NextQuestId": "Yohohohohohhohohohoh",
+        "QuestState": "Ongoing"
+      },
+      {
         "Id": "BeginerQuest2",
         "Title": "Welcome to the sea2",
-        "Description": "Yo whats up? this is the 2nd",
-        "NextQuestId": "Yohohohohohhohohohoh",
-        "QuestState": "Ongoing"
-      },
-      {
-        "Id": "BeginerQuest3",
-        "Title": "Welcome to the sea3",
-        "Description": "Yo whats up? this is the 3rd",
-        "NextQuestId": "Yohohohohohhohohohoh",
-        "QuestState": "Ongoing"
-      },
-      {
-        "Id": "BeginerQuest4",
-        "Title": "Welcome to the sea4",
-        "Description": "Yo whats up? this is the 3rd",
+        "Description": "Yo whats up?",
         "NextQuestId": "Yohohohohohhohohohoh",
         "QuestState": "Ongoing"
       }
