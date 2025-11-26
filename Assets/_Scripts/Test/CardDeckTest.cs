@@ -17,6 +17,7 @@ namespace Demo.Core
         [SerializeField] GameObject questPopupPrefab;
 
         private List<CharacterCard> cards;
+        private List<Scene> Scenes = new List<Scene>();
         
         protected override void Initialize()
         {
@@ -48,6 +49,7 @@ namespace Demo.Core
             factoryService.Register<DialoguePopupEntity>(new DialoguePopupFactory(dialoguePopup));
             factoryService.Register<CharacterPopupEntity>(new CharacterPopupFactory(characterPopup));
             factoryService.Register<QuestboardPopupEntity>(new QuestboardPopupFactory(questPopupPrefab));
+            factoryService.Register<SceneEntity>(new SceneFactory(cardDeckPrefab));
            
             foreach (IEntity entity in storeService.GetAllEntities())
             {
@@ -57,27 +59,39 @@ namespace Demo.Core
                     cards.Add(card);
                 } else if (entity is LocationEntity)
                 {
-                    LocationCard card = factoryService.Create(entity) as LocationCard;
-                    LocationDeckUI locationDeckUI = UIManager.Instance.GetLocationDeckUI();
-                    if (locationDeckUI != null)
-                    {
-                        locationDeckUI.AddCard(card);
-                    }
-                } else if (entity is CharacterSlotEntity)
+                    // LocationCard card = factoryService.Create(entity) as LocationCard;
+                    // LocationDeckUI locationDeckUI = UIManager.Instance.GetLocationDeckUI();
+                    // if (locationDeckUI != null)
+                    // {
+                    //     locationDeckUI.AddCard(card);
+                    // }
+                } 
+                else if (entity is CharacterSlotEntity)
                 {
                     
+                } 
+                else if (entity is SceneEntity)
+                {
+                    Scene scene = factoryService.Create(entity) as Scene;
+                    Scenes.Add(scene);
                 }
                 else
                 {
                     Debug.Log(entity.Id);
                 }
             }
+            
             // Init Player Deck
             PlayerDeckManager.Instance.InitPlayerDeck();
             CharacterDeck Deck = PlayerDeckManager.Instance.Get<CharacterDeck>();
             if (Deck != null)
             {
                 Deck.InitDeck(cards);
+            }
+
+            foreach (var scene in Scenes)
+            {
+                scene.LoadScene();
             }
         }
     }

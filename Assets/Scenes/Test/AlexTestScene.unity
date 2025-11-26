@@ -841,6 +841,10 @@ PrefabInstance:
       propertyPath: Manager
       value: 
       objectReference: {fileID: 1247534377}
+    - target: {fileID: 4335834678944562197, guid: 7ae13bf7e4c3e514297e99db63024096, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -388.65887
+      objectReference: {fileID: 0}
     - target: {fileID: 6035179538184274741, guid: 7ae13bf7e4c3e514297e99db63024096, type: 3}
       propertyPath: QuestboardButton
       value: 

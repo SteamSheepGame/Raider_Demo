@@ -11,12 +11,13 @@
           "popupid": "DockPopup1",
           "trigger": "OnClick"
         }
+        
       ]
     },
     {
       "id": "Dock2",
-      "label": "Dock2",
-      "description": "A sad silly little dock.",
+      "label": "Dock",
+      "description": "A peaceful dock.",
       "Image": "LocationSprites/Dock",
       "AvailableActions": [
         {
@@ -26,6 +27,7 @@
         }
       ]
     }
+    
   ]
   
 }

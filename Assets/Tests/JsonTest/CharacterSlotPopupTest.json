@@ -6,7 +6,7 @@
       "AvailableActions": [
         {
           "id": "OpenPopup",
-          "popupid": "DialogueInDock",
+          "popupid": "DockDialogue1",
           "trigger": "onFill"
         }
       ]

@@ -1,7 +1,7 @@
 ﻿{
   "DialoguePopup":[
     {
-      "Id": "DialogueInDock",
+      "Id": "IntroDialogue_1",
       "Type": "DialoguePopup",
       "Title": "Dialogue",
       "Dialogues": [
@@ -70,7 +70,7 @@
           ]
         },
         {
-          "Id": "Dialogue_006",
+          "Id": "DockDialogue1",
           "speaker": "Narrator",
           "narration": "You heard disturbances coming from the dock, maybe you should go take a look.",
           "text": "Check out the source of disturbance.",

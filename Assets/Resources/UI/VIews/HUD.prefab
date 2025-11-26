@@ -133,6 +133,8 @@ MonoBehaviour:
   - {fileID: 8065634255550301407}
   - {fileID: 4585022680251194865}
   - {fileID: 8436707956168331525}
+  IsDestroyOnLoad: 0
+  QuestboardButton: {fileID: 0}
 --- !u!1001 &497019524073722064
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -366,7 +368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2998323963675592237, guid: 38221d6e26a4c8447a1fe5a106eeb7f4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.0009825345
+      value: -0.0009765625
       objectReference: {fileID: 0}
     - target: {fileID: 3032770538429278153, guid: 38221d6e26a4c8447a1fe5a106eeb7f4, type: 3}
       propertyPath: m_Name
