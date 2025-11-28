@@ -3,6 +3,7 @@ using Sirenix.Utilities;
 
 namespace Demo.Core
 {
+    /// Used for loading Locations/Dialogues/..
     public class Scene: IScene
     {
         public IEntity Entity { get; }
