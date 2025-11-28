@@ -248,8 +248,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5.1666, y: -83.6753}
-  m_SizeDelta: {x: 828.7156, y: 274.7238}
+  m_AnchoredPosition: {x: 117.25515, y: -32.833992}
+  m_SizeDelta: {x: 583.8721, y: 376.41}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7950083242051053867
 MonoBehaviour:
@@ -617,7 +617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
+    SerializedFormat: 0
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -1198,8 +1198,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5.4304, y: 133.0006}
-  m_SizeDelta: {x: 803.1392, y: 44.7373}
+  m_AnchoredPosition: {x: -317.0495, y: -32.835}
+  m_SizeDelta: {x: 179.901, y: 376.41}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2445972218307915135
 CanvasRenderer:
