@@ -2,6 +2,9 @@
 using UnityEngine.EventSystems;
 namespace Demo.Core
 {
+    /// <summary>
+    /// 主要地图的控制
+    /// </summary>
     public class MapView: MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         public RectTransform map;         // 你的大图
