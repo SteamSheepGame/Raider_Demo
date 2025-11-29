@@ -8,8 +8,10 @@
     "AvailableActions": [
       {
         "id": "OpenPopup",
-        "popupid": "PubPopup1",
-        "trigger": "OnClick"
+        "trigger": "OnClick",
+        "params":{
+          "popupid": "PubPopup1"
+        }
       }
     ]
   }

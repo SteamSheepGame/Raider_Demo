@@ -6,8 +6,11 @@
       "AvailableActions": [
         {
           "id": "OpenPopup",
-          "popupid": "DockDialogue1",
-          "trigger": "onFill"
+          "trigger": "onFill",
+          "params": {
+            "popupid": "DockDialogue1"
+          }
+                  
         }
       ]
   },
@@ -17,8 +20,10 @@
       "AvailableActions": [
         {
           "id": "OpenPopup",
-          "popupid": "OrphilaRecruitDialogue",
-          "trigger": "onFill"
+          "trigger": "onFill",
+          "params": {
+            "popupid": "OrphilaRecruitDialogue"
+          }
         }
       ]
     }

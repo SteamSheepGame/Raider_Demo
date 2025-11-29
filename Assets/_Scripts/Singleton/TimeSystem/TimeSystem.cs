@@ -18,17 +18,26 @@ namespace Demo.Core
     {
         public int day;
         public int hour;
-
+        private float hourAccumulator;
         /// <summary>
         /// 更新游戏时间【第几天+小时】
         /// </summary>
         /// <param name="deltaTime"></param>
         public void AdvanceTime(float deltaTime)
         {
-            float hoursToAdd = deltaTime / 60f;
-            int totalHours = hour + (int)hoursToAdd;
-            hour = totalHours % 24;
-            day += totalHours / 24;
+            hourAccumulator += deltaTime / 60f;   // accumulate fractional hours
+
+            while (hourAccumulator >= 1f)
+            {
+                hour++;
+                hourAccumulator -= 1f;
+
+                if (hour >= 24)
+                {
+                    hour = 0;
+                    day++;
+                }
+            }
         }
 
         public override string ToString()

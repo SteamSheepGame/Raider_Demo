@@ -8,8 +8,10 @@
       "AvailableActions": [
         {
           "id": "OpenPopup",
-          "popupid": "DockPopup1",
-          "trigger": "OnClick"
+          "trigger": "OnClick",
+          "params":{
+            "popupid": "DockPopup1"
+          }
         }
         
       ]
@@ -22,8 +24,10 @@
       "AvailableActions": [
         {
           "id": "OpenPopup",
-          "popupid": "DockPopup1",
-          "trigger": "OnClick"
+          "trigger": "OnClick",
+          "params":{
+            "popupid": "DockPopup1"
+          }
         }
       ]
     }
