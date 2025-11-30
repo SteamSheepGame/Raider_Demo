@@ -1,7 +1,8 @@
-﻿using Sirenix.OdinInspector;
+﻿using System;
+using Sirenix.OdinInspector;
 using TMPro;
-using UnityEditor.Graphs;
 using UnityEngine;
+using UnityEngine.UI;
 namespace Demo.Core
 {
     public class LocationPopup: BasePopup
@@ -9,8 +10,15 @@ namespace Demo.Core
         [SerializeField, Required] TextMeshProUGUI locationName;
         [SerializeField, Required] TextMeshProUGUI locationDescription;
         [SerializeField, Required] private RectTransform SlotRect;
+        [SerializeField, Required] private Button confirmButton;
+        [SerializeField] private Image progressBar;
         
         private ISlot currSlot;
+        private bool workCompleted = false;
+        private void Awake()
+        {
+            confirmButton.onClick.AddListener(OnConfirmClicked);
+        }
         
         public override void Bind(IEntity entity)
         {
@@ -38,6 +46,47 @@ namespace Demo.Core
                 SpawnSlot(characterSlot);
             }
             
+        }
+
+        private void Update()
+        {
+            if (currentTask != null)
+            {
+                var c = currentTask.WorkTimer;
+                float progress = 1.0f;
+                if (!workCompleted)
+                {
+                    progress = TimeSystem.Instance.GetProgress(c);
+                    progressBar.fillAmount = progress;
+                } 
+
+                Debug.Log("ProgressBar: " + progress);
+                
+                // allow confirming only when finished
+                confirmButton.interactable = (progress >= 1f);
+            }
+        }
+
+        public override void StartWork()
+        {
+            base.StartWork();
+            currSlot.LockCard();
+        }
+
+        void OnConfirmClicked()
+        {
+            workCompleted = false;
+            
+            currSlot.UnlockCard();
+            UIManager.Instance.ClosePopup(PopupId);
+        }
+        
+        public override void OnWorkFinished()
+        {
+            base.OnWorkFinished();
+            workCompleted = true;
+            progressBar.fillAmount = 1;
+            confirmButton.interactable = true;
         }
 
         /// <summary>

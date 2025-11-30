@@ -164,6 +164,9 @@ namespace Demo.Core
            
         }
 
+        public GameObject GetTopPopup() => guiView.GetTopPopup();
+
+        public GameObject GetPopup(string Id) => guiView.GetPopup(Id);
         public void CloseTopPopup() => guiView?.CloseTopPopup();
         public void ClosePopup(string panelName) => guiView?.ClosePopup(panelName);
         public void CloseAllPopups() => guiView?.CloseAllPopups();

@@ -7,6 +7,9 @@ using Object = UnityEngine.Object;
 
 namespace Demo.Core
 {
+    /// <summary>
+    /// 一个卡牌堆UI模组
+    /// </summary>
     public class LocationDeckUI : SerializedMonoBehaviour
     {
         [TitleGroup("UI References")]

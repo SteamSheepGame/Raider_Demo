@@ -1,0 +1,79 @@
+﻿{
+  "CharacterSlot": [
+    {
+     "id": "CharacterPopupSlot1",
+     "type": "Popup",
+      "AvailableActions": [
+        {
+          "id": "OpenPopup",
+          "trigger": "onFill",
+          "params": {
+            "popupid": "DockDialogue1"
+          }
+                  
+        }
+      ]
+    },
+    {
+      "id": "CharacterPopupSlot2",
+      "type": "Popup",
+      "AvailableActions": [
+        {
+          "id": "OpenPopup",
+          "trigger": "onFill",
+          "params": {
+            "popupid": "OrphilaRecruitDialogue"
+          }
+        }
+      ]
+    },
+    {
+      "id": "FishingSlot",
+      "type": "Popup",
+      "AvailableActions": [
+        {
+          "id": "Work",
+          "trigger": "onFill",
+          "params": {
+            "WorkId": "Fishing",
+            "RewardResource": "Fish",
+            "RewardAmount": "2",
+            "Hours": "120"
+          }
+        }
+      ]
+    },
+    {
+      "id": "CookingSlot",
+      "type": "Popup",
+      "AvailableActions": [
+        {
+          "id": "Work",
+          "trigger": "onFill",
+          "params": {
+            "WorkId": "Cooking",
+            "RewardResource": "Food",
+            "RewardAmount": "2",
+            "Hours": "120"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ReadingSlot",
+      "type": "Popup",
+      "AvailableActions": [
+        {
+          "id": "Work",
+          "trigger": "onFill",
+          "params": {
+            "WorkId": "Reading",
+            "RewardResource": "Knowledge",
+            "RewardAmount": "2",
+            "Hours": "120"
+          }
+        }
+      ]
+    }
+  ]
+}

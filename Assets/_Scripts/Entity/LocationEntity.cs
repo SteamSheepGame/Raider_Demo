@@ -19,7 +19,7 @@ namespace Demo.Core
     public class ActionBinding
     {
         public string Id { get; set; }               // Unique ID for this binding
-        public string PopupId { get; set; }
         public string Trigger { get; set; }          // e.g. "OnClick", "OnHover", "OnEnter"
+        public Dictionary<string, string> Params;
     }
 }

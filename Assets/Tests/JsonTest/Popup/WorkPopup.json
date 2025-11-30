@@ -1,0 +1,36 @@
+﻿{
+  "LocationPopup":[
+    {
+      "id": "Fishing",
+      "Type": "LocationPopup",
+      "Title": "Fishing",
+      "description": "A brand new day. Its time for fishinggg!",
+      "Characters": [],
+      "Slots": ["FishingSlot"]
+    },
+    {
+      "id": "Cooking",
+      "Type": "LocationPopup",
+      "Title": "Cooking",
+      "description": "A brand new day. Its time for Cooking!",
+      "Characters": [],
+      "Slots": ["CookingSlot"]
+    },
+    {
+      "id": "Maintenance",
+      "Type": "LocationPopup",
+      "Title": "Cooking",
+      "description": "A brand new day. Its time for Maintenance!",
+      "Characters": [],
+      "Slots": ["CharacterPopupSlot1"]
+    },
+    {
+      "id": "Reading",
+      "Type": "LocationPopup",
+      "Title": "Reading",
+      "description": "A brand new day. Its time for Reading!",
+      "Characters": [],
+      "Slots": ["ReadingSlot"]
+    }
+  ]
+}

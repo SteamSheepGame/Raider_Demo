@@ -85,7 +85,7 @@
               "id": "reply_006",
               "buttonText": "You heard two people arguing, look out from the window.",
               "text": "Look out the window.",
-              "nextDialogueId": "Dialogue_005"
+              "nextDialogueId": "Dialogue_007"
             }
           ]
         },

@@ -1,9 +1,0 @@
-﻿{
-  "Action":
-  {
-    "Id": "OpenPopup",
-    "ActionType": "OpenPopup",
-    "PopupId": "DockPopup1",
-    "TargetType": "Location"
-  }
-}

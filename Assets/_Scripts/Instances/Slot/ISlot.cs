@@ -22,6 +22,9 @@ namespace Demo.Core
         void Highlight(bool on);
         void Clear();
 
+        void LockCard();
+        void UnlockCard();
+
         void ReturnCard();
         
         // Events
