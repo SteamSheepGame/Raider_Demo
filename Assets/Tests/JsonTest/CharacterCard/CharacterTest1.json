@@ -3,10 +3,10 @@
     [
       {
         "id": "1234",
-        "label": "TestCharacter1",
+        "label": "",
         "aspect": "Character",
-        "image": "CharacterSprites/Test1",
-        "description": "This is a amazing character!",
+        "image": "CharacterSprites/RecruitCard",
+        "description": "Know someone who'd be a perfect fit? Recruit them.",
         "attributes": {
           "intellect": 0,
           "religion": 0,
@@ -22,17 +22,17 @@
             "id": "OpenPopup",
             "trigger": "OnClick",
             "params":{
-              "popupid": "TestCharacter1Detail"
+              "popupid": "RecruitCardDetail"
             }
           }
         ]
       },
       {
         "id": "1235",
-        "label": "JoeyGuo",
+        "label": "",
         "aspect": "Character",
-        "image": "CharacterSprites/Test1",
-        "description": "This is a amazing character!",
+        "image": "CharacterSprites/AbstractCard",
+        "description": "?",
         "attributes": {
           "intellect": 0,
           "religion": 0,
@@ -48,17 +48,17 @@
             "id": "OpenPopup",
             "trigger": "OnClick",
             "params":{
-              "popupid": "TestCharacter1Detail"
+              "popupid": "AbstractCardDetail"
             }
           }
         ]
       },
       {
         "id": "1236",
-        "label": "ArrayTestCharacters",
-        "aspect": "Character",
-        "image": "CharacterSprites/Test1",
-        "description": "This is a amazing character!",
+        "label": "",
+        "aspect": "",
+        "image": "CharacterSprites/MoneyCard",
+        "description": "Gold gold gold!!",
         "attributes": {
           "intellect": 0,
           "religion": 0,
@@ -74,16 +74,16 @@
             "id": "OpenPopup",
             "trigger": "OnClick",
             "params":{
-              "popupid": "TestCharacter1Detail"
+              "popupid": "MoneyCardDetail"
             }
           }
         ]
       },
       {
         "id": "1238",
-        "label": "Orphila",
+        "label": "",
         "aspect": "Character",
-        "image": "CharacterSprites/Character_Art1",
+        "image": "CharacterSprites/OrphilaCard",
         "description": "A confident and assertive woman who is a non believer. She is the Captain of the Ship called JUPITER.",
         "attributes": {
           "intellect": 0,
@@ -100,16 +100,16 @@
             "id": "OpenPopup",
             "trigger": "OnClick",
             "params":{
-              "popupid": "TestCharacter1Detail"
+              "popupid": "OrphilaCardDetail"
             }
           }
         ]
       },
       {
         "id": "1240",
-        "label": "Salazar",
+        "label": "",
         "aspect": "Character",
-        "image": "CharacterSprites/Character_Art2",
+        "image": "CharacterSprites/SalazarCard",
         "description": "A cunning and educated man who worships the Seeker and the Magician. He is a Journalist who is looking for something to write on his next “Big Hit”.",
         "attributes": {
           "intellect": 0,
@@ -126,17 +126,17 @@
             "id": "OpenPopup",
             "trigger": "OnClick",
             "params":{
-              "popupid": "TestCharacter1Detail"
+              "popupid": "SalazarCardDetail"
             }
           }
         ]
       },
       {
         "id": "1242",
-        "label": "Jupiter",
+        "label": "",
         "aspect": "Character",
-        "image": "CharacterSprites/Character_Art3",
-        "description": "A careful and persuasive woman who worships the Twins. She is a missionary of the Order of Mythos",
+        "image": "CharacterSprites/CharacterCard",
+        "description": "You",
         "attributes": {
           "intellect": 0,
           "religion": 0,
@@ -152,7 +152,7 @@
             "id": "OpenPopup",
             "trigger": "OnClick",
             "params":{
-              "popupid": "TestCharacter1Detail"
+              "popupid": "CharacterCardDetail"
             }
           }
         ]

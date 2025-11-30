@@ -4,7 +4,7 @@
       "id": "Fishing",
       "Type": "LocationPopup",
       "Title": "Fishing",
-      "description": "A brand new day. Its time for fishinggg!",
+      "description": "The sea is calm and the breeze is light-perfect fishing conditions.",
       "Characters": [],
       "Slots": ["FishingSlot"]
     },
@@ -12,7 +12,7 @@
       "id": "Cooking",
       "Type": "LocationPopup",
       "Title": "Cooking",
-      "description": "A brand new day. Its time for Cooking!",
+      "description": "You'll find a serviceable stove and basic kitchen equipment. It has everything you need to cook comfortably, though it's not luxurious.",
       "Characters": [],
       "Slots": ["CookingSlot"]
     },
@@ -20,7 +20,7 @@
       "id": "Maintenance",
       "Type": "LocationPopup",
       "Title": "Cooking",
-      "description": "A brand new day. Its time for Maintenance!",
+      "description": "It's working, but it could probably run more smoothly. Perhaps it just needs a slight adjustment?",
       "Characters": [],
       "Slots": ["CharacterPopupSlot1"]
     },
@@ -28,7 +28,7 @@
       "id": "Reading",
       "Type": "LocationPopup",
       "Title": "Reading",
-      "description": "A brand new day. Its time for Reading!",
+      "description": "This place may not be much, but it's cozy enough to settle in with a book. After all, there's no better companion than a good book to fill the quiet hours.",
       "Characters": [],
       "Slots": ["ReadingSlot"]
     }

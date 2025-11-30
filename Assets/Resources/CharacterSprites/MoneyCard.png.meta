@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 73d9d6a35ef01b448bf35a34a04aa408
+guid: fe87536aae9149e4a97a8f1e05162d42
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8709655182438610650
-    second: Character_Art1_0
+      213: 7374282570586503516
+    second: MoneyCard_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Character_Art1_0
+      name: MoneyCard_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 673
-        height: 1126
+        width: 272
+        height: 372
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ad6b4612e39eed870800000000000000
-      internalID: 8709655182438610650
+      spriteID: c59b9256de6b65660800000000000000
+      internalID: 7374282570586503516
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Character_Art1_0: 8709655182438610650
+      MoneyCard_0: 7374282570586503516
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

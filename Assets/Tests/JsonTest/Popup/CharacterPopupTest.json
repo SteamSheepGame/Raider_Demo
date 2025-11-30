@@ -1,10 +1,40 @@
 ﻿{
   "CharacterPopup": [
     {
-      "Id": "TestCharacter1Detail",
+      "Id": "RecruitCardDetail",
       "Type": "CharacterPopup",
-      "Name": "CharacterTest1",
-      "Description": "This is a little guy"
+      "Name": "Recruit",
+      "Description": "Know someone who'd be a perfect fit? Recruit them."
+    },
+    {
+      "Id": "AbstractCardDetail",
+      "Type": "CharacterPopup",
+      "Name": "Abstract",
+      "Description": "?"
+    },
+    {
+      "Id": "MoneyCardDetail",
+      "Type": "CharacterPopup",
+      "Name": "Money",
+      "Description": "Gold gold gold!!"
+    },
+    {
+      "Id": "OrphilaCardDetail",
+      "Type": "CharacterPopup",
+      "Name": "Orphila",
+      "Description": "A confident and assertive woman who is a non believer. She is the Captain of the Ship called JUPITER."
+    },
+    {
+      "Id": "SalazarCardDetail",
+      "Type": "CharacterPopup",
+      "Name": "Salazar",
+      "Description": "A cunning and educated man who worships the Seeker and the Magician. He is a Journalist who is looking for something to write on his next “Big Hit”."
+    },
+    {
+      "Id": "CharacterCardDetail",
+      "Type": "CharacterPopup",
+      "Name": "You",
+      "Description": "You"
     }
   ]
 }

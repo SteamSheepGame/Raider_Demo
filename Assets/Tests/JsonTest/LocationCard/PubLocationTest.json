@@ -2,7 +2,7 @@
   "Location":
   {
     "id": "Tavern",
-    "label": "Tavern",
+    "label": "",
     "description": "A tavern bustling with business. This is where people drink, and exchange secrets.",
     "Image": "LocationSprites/Pub",
     "AvailableActions": [
