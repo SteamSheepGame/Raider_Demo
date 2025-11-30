@@ -74,6 +74,19 @@
           }
         }
       ]
+    },
+    {
+      "id": "FixShipEventSlot",
+      "type": "Popup",
+      "AvailableActions": [
+        {
+          "id": "OpenPopup",
+          "trigger": "onFill",
+          "params": {
+            "popupid": "DockDialogue1"
+          }
+        }
+      ]
     }
   ]
 }
