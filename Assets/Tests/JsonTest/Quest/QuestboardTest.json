@@ -6,8 +6,8 @@
     "Quests": [
       {
         "Id": "BeginerQuest",
-        "Title": "Welcome to the sea",
-        "Description": "Yo whats up?",
+        "Title": "Explore The town",
+        "Description": "You've arrived. The seaside town sprawls before you, all faded paint and quiet suspicion. The mission parameters are clear. Now, you need to make the town talk.",
         "NextQuestId": "Yohohohohohhohohohoh",
         "QuestState": "Ongoing"
       },

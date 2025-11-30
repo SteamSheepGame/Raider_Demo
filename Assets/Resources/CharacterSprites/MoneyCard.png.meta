@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6c9f027afcb3b3b4e9365a71790da8f3
+guid: fe87536aae9149e4a97a8f1e05162d42
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2675244452250869674
-    second: WhiteCircle_0
+      213: 7374282570586503516
+    second: MoneyCard_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WhiteCircle_0
+      name: MoneyCard_0
       rect:
         serializedVersion: 2
-        x: 81
-        y: 81
-        width: 638
-        height: 637
+        x: 0
+        y: 0
+        width: 272
+        height: 372
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 650a040485f9fdad0800000000000000
-      internalID: -2675244452250869674
+      spriteID: c59b9256de6b65660800000000000000
+      internalID: 7374282570586503516
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      WhiteCircle_0: -2675244452250869674
+      MoneyCard_0: 7374282570586503516
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

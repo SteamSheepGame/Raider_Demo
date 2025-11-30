@@ -2,7 +2,7 @@
   "Location":[
     {
       "id": "Dock",
-      "label": "Dock",
+      "label": "",
       "description": "A peaceful dock.",
       "Image": "LocationSprites/Dock",
       "AvailableActions": [
@@ -18,7 +18,7 @@
     },
     {
       "id": "Dock2",
-      "label": "Dock",
+      "label": "",
       "description": "A peaceful dock.",
       "Image": "LocationSprites/Dock",
       "AvailableActions": [

@@ -7,9 +7,9 @@
       "Dialogues": [
         {
           "Id": "Dialogue_001",
-          "speaker": "Narrator",
-          "narration": "The morning light shine through the window. You opened your eyes but cannot seem to recall who you are or where exactly you are.",
-          "text": "There are two letters on the table next to your bed, perhaps the words might enlighten you? '",
+          "speaker": "",
+          "text": "The morning light shine through the window. You opened your eyes but cannot seem to recall who you are or where exactly you are.",
+          "narration": "There are two letters on the table next to your bed, perhaps the words might enlighten you? '",
           "replies": [
             {
               "id": "reply_001",
@@ -27,8 +27,8 @@
         },
         {
           "Id": "Dialogue_002",
-          "speaker": "Narrator",
-          "narration": "You open the letter, the top line addresses you as a naval officer from the Imperial captial. You are THE PLAYER, send by Lord Felio under the name of the Inquisition and Continental Union to investigate on a event in utmost secrecy. ",
+          "speaker": "",
+          "narration": "",
           "text": "You open the letter, the top line addresses you as a naval officer from the Imperial captial. You are THE PLAYER, send by Lord Felio under the name of the Inquisition and Continental Union to investigate on a event in utmost secrecy.",
           "replies": [
             {
@@ -41,9 +41,9 @@
         },
         {
           "Id": "Dialogue_003",
-          "speaker": "Narrator",
-          "narration": "You open the letter. To your surprise, the letter is completely empty. Yet the longer you look at it, the white seems to suck you in. Suddenly you recall something from your dream last night.",
-          "text": "Introduce Dream Mechanics. Open the second letter.",
+          "speaker": "",
+          "text": "You open the letter. To your surprise, the letter is completely empty. Yet the longer you look at it, the white seems to suck you in. Suddenly you recall something from your dream last night.",
+          "narration": "Introduce Dream Mechanics. Open the second letter.",
           "replies": [
             {
               "id": "reply_004",
@@ -55,23 +55,23 @@
         },
         {
           "Id": "Dialogue_004",
-          "speaker": "Narrator",
-          "narration": "You open the letter. To your surprise, the letter is completely empty. Yet the longer you look at it, the white seems to suck you in. Suddenly you recall something from your dream last night.",
-          "text": "Introduce Dream Mechanics. Open the second letter.",
+          "speaker": "",
+          "text": "You open the letter. To your surprise, the letter is completely empty. Yet the longer you look at it, the white seems to suck you in. Suddenly you recall something from your dream last night.",
+          "narration": "Introduce Dream Mechanics. Open the second letter.",
           "replies": [
           ]
         },
         {
           "Id": "Dialogue_005",
-          "speaker": "Narrator",
-          "narration": "You open the letter, the top line addresses you as a naval officer from the Imperial captial. You are THE PLAYER, send by Lord Felio under the name of the Inquisition and Continental Union to investigate on a event in utmost secrecy. ",
-          "text": "Open the second letter.",
+          "speaker": "",
+          "text": "You open the letter, the top line addresses you as a naval officer from the Imperial captial. You are THE PLAYER, send by Lord Felio under the name of the Inquisition and Continental Union to investigate on a event in utmost secrecy. ",
+          "narration": "Open the second letter.",
           "replies": [
           ]
         },
         {
           "Id": "DockDialogue1",
-          "speaker": "Narrator",
+          "speaker": "",
           "narration": "You heard disturbances coming from the dock, maybe you should go take a look.",
           "text": "Check out the source of disturbance.",
           "replies": [
@@ -91,7 +91,7 @@
         },
         {
           "Id": "Dialogue_007",
-          "speaker": "Narrator",
+          "speaker": "",
           "narration": "You saw two poorly dressed men and woman arguing about something. They stopped to look at you when they feel your gaze, and point to their card board which reads: 'LOOKING FOR WORK, price of two able hands for one.'",
           "text": "Check out the source of disturbance.",
           "replies": [
@@ -111,7 +111,7 @@
         },
         {
           "Id": "Dialogue_008",
-          "speaker": "Narrator",
+          "speaker": "",
           "narration": "You get out to the deck and see Watson, an old time friend. He left the navy about 2 years ago and have not heard from him since. He told you that he heard you are looking to recruit people for a mission so he come to see if he can help with that.",
           "text": "Check out the source of disturbance.",
           "replies": [

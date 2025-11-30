@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SalazarCard_0: -5666282194148871757
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
