@@ -82,6 +82,24 @@ namespace Demo.Core
             UpdateBackdrop(IsModalExpectedForTop());
         }
 
+        public GameObject GetTopPopup()
+        {
+            return popupStack.Peek();
+        }
+
+        public GameObject GetPopup(string Id)
+        {
+            if (string.IsNullOrEmpty(Id))
+                return null;
+
+            foreach (var popup in popupStack)
+            {
+                if (popup != null && popup.name == Id)
+                    return popup;
+            }
+
+            return null;
+        }
         /// <summary>
         /// Close a specific popup by name (if it exists in the stack).
         /// </summary>

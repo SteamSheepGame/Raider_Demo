@@ -6,7 +6,7 @@
       "Title": "Fishing",
       "description": "A brand new day. Its time for fishinggg!",
       "Characters": [],
-      "Slots": ["CharacterPopupSlot1"]
+      "Slots": ["FishingSlot"]
     },
     {
       "id": "Cooking",
@@ -14,7 +14,7 @@
       "Title": "Cooking",
       "description": "A brand new day. Its time for Cooking!",
       "Characters": [],
-      "Slots": ["CharacterPopupSlot1"]
+      "Slots": ["CookingSlot"]
     },
     {
       "id": "Maintenance",
@@ -30,7 +30,7 @@
       "Title": "Reading",
       "description": "A brand new day. Its time for Reading!",
       "Characters": [],
-      "Slots": ["CharacterPopupSlot1"]
+      "Slots": ["ReadingSlot"]
     }
   ]
 }

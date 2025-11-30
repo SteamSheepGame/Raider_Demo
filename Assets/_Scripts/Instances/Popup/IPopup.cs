@@ -6,5 +6,8 @@ namespace Demo.Core
     { 
         RectTransform Rect { get; }
         void OnPopupClosed();
+        
+        void SetWorkTask(WorkTask task);
+        void StartWork();
     }
 }

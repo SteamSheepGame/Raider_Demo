@@ -114,6 +114,21 @@ namespace Demo.Core
             _remainingTimes.Remove(consumer);
         }
         
+        public float GetRemainingTime(ITimeConsumer consumer)
+        {
+            if (_remainingTimes.TryGetValue(consumer, out float remaining))
+                return remaining;
+            return 0;
+        }
+        
+        public float GetProgress(ITimeConsumer consumer)
+        {
+            if (_remainingTimes.TryGetValue(consumer, out float remaining))
+                return 1f - (remaining / consumer.Lifetime);
+
+            return 0f;
+        }
+        
         [Button]
         public void Pause() => _isPaused = true;
         [Button]

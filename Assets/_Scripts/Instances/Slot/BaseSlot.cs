@@ -11,6 +11,8 @@ namespace Demo.Core
         [TitleGroup("UI References")] 
         [SerializeField, Required] private RectTransform _rect;
         [SerializeField] private Image _backgroundImage;
+
+        private bool bCardLocked = false;
         
         // Event
         public event Action<ISlot> HoveredStart;
@@ -85,8 +87,22 @@ namespace Demo.Core
             IsSelected = on;
         }
 
+        public void LockCard()
+        {
+            bCardLocked = true;
+        }
+
+        public void UnlockCard()
+        {
+            bCardLocked = false;
+        }
+        
+        /// <summary>
+        /// 如果卡牌没有上锁，归还卡牌
+        /// </summary>
         public void ReturnCard()
         {
+            if (bCardLocked) return;
             if (FilledCard != null)
             {
                 FilledCard.AddToDeck();
