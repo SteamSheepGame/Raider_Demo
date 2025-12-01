@@ -10,31 +10,43 @@
       "Id": "AbstractCardDetail",
       "Type": "CharacterPopup",
       "Name": "Abstract",
+      "Image": "CharacterSprites/AbstractCard",
       "Description": "?"
     },
     {
       "Id": "MoneyCardDetail",
       "Type": "CharacterPopup",
       "Name": "Money",
+      "image": "CharacterSprites/MoneyCard",
       "Description": "Gold gold gold!!"
     },
     {
       "Id": "OrphilaCardDetail",
       "Type": "CharacterPopup",
       "Name": "Orphila",
+      "image": "CharacterSprites/OrphilaCard",
       "Description": "A confident and assertive woman who is a non believer. She is the Captain of the Ship called JUPITER."
     },
     {
       "Id": "SalazarCardDetail",
       "Type": "CharacterPopup",
       "Name": "Salazar",
+      "image": "CharacterSprites/SalazarCard",
       "Description": "A cunning and educated man who worships the Seeker and the Magician. He is a Journalist who is looking for something to write on his next “Big Hit”."
     },
     {
       "Id": "CharacterCardDetail",
       "Type": "CharacterPopup",
       "Name": "You",
+      "image": "CharacterSprites/CharacterCard",
       "Description": "You"
+    },
+    {
+      "Id": "FishCardDetail",
+      "Type": "CharacterPopup",
+      "Name": "Fish",
+      "image": "CharacterSprites/Fish",
+      "Description": "Fish: essential for survival!!"
     }
   ]
 }

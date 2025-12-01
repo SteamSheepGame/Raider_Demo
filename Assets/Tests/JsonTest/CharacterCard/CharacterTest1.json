@@ -54,7 +54,7 @@
         ]
       },
       {
-        "id": "1236",
+        "id": "Money",
         "label": "",
         "aspect": "",
         "image": "CharacterSprites/MoneyCard",
@@ -80,7 +80,7 @@
         ]
       },
       {
-        "id": "1238",
+        "id": "Orphila",
         "label": "",
         "aspect": "Character",
         "image": "CharacterSprites/OrphilaCard",
@@ -106,7 +106,7 @@
         ]
       },
       {
-        "id": "1240",
+        "id": "Salazar",
         "label": "",
         "aspect": "Character",
         "image": "CharacterSprites/SalazarCard",
@@ -132,7 +132,7 @@
         ]
       },
       {
-        "id": "1242",
+        "id": "Player",
         "label": "",
         "aspect": "Character",
         "image": "CharacterSprites/CharacterCard",

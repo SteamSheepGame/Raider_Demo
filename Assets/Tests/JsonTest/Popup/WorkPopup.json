@@ -6,7 +6,16 @@
       "Title": "Fishing",
       "description": "The sea is calm and the breeze is light-perfect fishing conditions.",
       "Characters": [],
-      "Slots": ["FishingSlot"]
+      "Slots": ["FishingSlot"],
+      "AvailableActions": [
+        {
+          "id": "AddCard",
+          "trigger": "onConfirm",
+          "params": {
+            "Character": "Fish"
+          }
+        }
+      ]
     },
     {
       "id": "Cooking",

@@ -8,6 +8,7 @@ namespace Demo.Core
         public string Id { get; set; }
         public string Type { get; set; }
         public string Title { get; set; }
+        public List<ActionBinding> AvailableActions { get; set; } = new();
         public List<DialogueBinding> Dialogues{ get; set; }
     }
 

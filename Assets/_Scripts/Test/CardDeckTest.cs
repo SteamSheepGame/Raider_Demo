@@ -55,8 +55,12 @@ namespace Demo.Core
             {
                 if (entity is CharacterEntity)
                 {
-                    CharacterCard card = factoryService.Create(entity) as CharacterCard;
-                    cards.Add(card);
+                    if (entity.Id == "Player")
+                    {
+                        CharacterCard card = factoryService.Create(entity) as CharacterCard;
+                        cards.Add(card);
+                    }
+
                 } else if (entity is LocationEntity)
                 {
                     // LocationCard card = factoryService.Create(entity) as LocationCard;

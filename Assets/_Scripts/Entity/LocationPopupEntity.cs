@@ -10,5 +10,6 @@ namespace Demo.Core
         public string Description { get; set; }
         public List<string> Characters { get; set; }
         public List<string> Slots { get; set; }
+        public List<ActionBinding> AvailableActions { get; set; } = new();
     }
 }

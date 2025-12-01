@@ -11,6 +11,7 @@ namespace Demo.Core
         {
             _handlers["OpenPopup"] = new OpenPopupAction();
             _handlers["Work"]      = new WorkAction();
+            _handlers["AddCard"] = new AddCardAction();
         }
         public void ExecuteAction(ActionBinding action)
         {

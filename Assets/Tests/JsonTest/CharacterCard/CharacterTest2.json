@@ -1,3 +1,33 @@
 ﻿{
-    
+  "Character":
+  [
+    {
+      "id": "Fish",
+      "label": "",
+      "aspect": "",
+      "image": "CharacterSprites/Fish",
+      "description": "Fish fish fish!!",
+      "attributes": {
+        "intellect": 0,
+        "religion": 0,
+        "strength": 0,
+        "charm": 3,
+        "occult": 0,
+        "history": 0,
+        "technology": 0,
+        "sanity": 0
+      },
+      "AvailableActions": [
+        {
+          "id": "OpenPopup",
+          "trigger": "OnClick",
+          "params": {
+            "popupid": "FishCardDetail"
+          }
+        }
+      ]
+    }  
+  ]
+
+
 }

@@ -66,6 +66,7 @@ namespace Demo.Core
             }
             
         }
+        
 
 		protected virtual RectTransform GetRect()
         {

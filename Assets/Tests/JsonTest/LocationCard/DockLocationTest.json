@@ -20,7 +20,7 @@
       "id": "Dock2",
       "label": "",
       "description": "A peaceful dock.",
-      "Image": "LocationSprites/Dock",
+      "Image": "LocationSprites/PortCard",
       "AvailableActions": [
         {
           "id": "OpenPopup",

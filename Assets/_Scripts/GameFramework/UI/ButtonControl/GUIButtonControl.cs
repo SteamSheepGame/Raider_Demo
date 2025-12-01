@@ -10,8 +10,9 @@ namespace Demo.Core
         [SerializeField] private string viewName;
         // public GameObject TypePanel;
         public Button TypeButton;
-        public UIManager Manager;
         public bool isEnabled = false;
+        
+        private GameObject ControlledPanel = null;
         
         private void Awake()
         {
@@ -29,13 +30,20 @@ namespace Demo.Core
             if(isEnabled == false)
             {
                 // DisableAllOtherButtons(TypeButton);
-                Manager.ShowPopup(viewName);
+                // TODO: right now used for carddeck control, later consider change to not use popup for carddeck!
+                if(ControlledPanel == null) ControlledPanel = UIManager.Instance.GetPanel(viewName);
+                
+                ControlledPanel.SetActive(true);
+                
                 isEnabled = true;
             }
             else 
             {
                 EnableAllOtherButtons(TypeButton);
-                Manager.ClosePopup(viewName);
+                
+                if(ControlledPanel == null) ControlledPanel = UIManager.Instance.GetPanel(viewName);
+                
+                ControlledPanel.SetActive(false);
                 isEnabled = false;
             }
 

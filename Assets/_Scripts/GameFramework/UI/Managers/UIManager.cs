@@ -98,6 +98,7 @@ namespace Demo.Core
             Debug.LogError($"[UIManager] No IView cached for '{viewName}'.");
             return null;
         }
+        
 
         public void ShowViewOnCanvas(string canvasName, string panelName, bool exclusive = false, bool bringToFront = true)
             => GetView(canvasName)?.Show(panelName, exclusive, bringToFront);
@@ -108,14 +109,14 @@ namespace Demo.Core
         public void BringPanelToFront(string canvasName, string panelName)
             => GetView(canvasName)?.BringToFront(panelName);
 
-        public void ShowPopup(string panelName, bool modal = true)
+        public void ShowPopup(string panelName, bool closeLast = true, bool modal = true)
         {
             if (guiView == null)
             {
                 Debug.LogWarning("[UIManager] ShowPopup called but guiView is null.");
                 return;
             }
-            guiView.ShowPopup(panelName, modal);
+            guiView.ShowPopup(panelName, closeLast, modal);
         }
         
         public LocationDeckUI GetLocationDeckUI()
@@ -161,13 +162,24 @@ namespace Demo.Core
                     guiView.AddPopup(mb.gameObject, entity.Id);
                 }     
             }
-           
+        }
+
+        public void AddPanels(GameObject gameObject, string Id)
+        {
+            guiView.AddPanels(gameObject, Id);
+        }
+
+        public GameObject GetPanel(string Id)
+        {
+            GameObject panel = null;
+            guiView.TryGetPanel(Id, out panel);
+            return panel;
         }
 
         public GameObject GetTopPopup() => guiView.GetTopPopup();
 
         public GameObject GetPopup(string Id) => guiView.GetPopup(Id);
-        public void CloseTopPopup() => guiView?.CloseTopPopup();
+        public void CloseTopPopup() => guiView?.CloseTopPopup(); 
         public void ClosePopup(string panelName) => guiView?.ClosePopup(panelName);
         public void CloseAllPopups() => guiView?.CloseAllPopups();
         public bool AnyPopupOpen => guiView != null && guiView.HasOpenPopups;

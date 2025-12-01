@@ -118,6 +118,7 @@ namespace Demo.Core
             OccupiedSlot = null;
         }
         
+       
         
         /// <summary>
         /// 扩展到细节面板
@@ -158,7 +159,14 @@ namespace Demo.Core
 
         public virtual void AddToDeck()
         {
-            
+            if (ParentDeck != null)
+            {
+                ParentDeck.TryAdd(this as TCard);
+            }
+            else
+            {
+                //TODO
+            }
         }
 
         #region Drag

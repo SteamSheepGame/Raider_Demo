@@ -35,7 +35,7 @@ namespace Demo.Core
         /// <summary>
         /// Show a popup and push to the stack.
         /// </summary>
-        public void ShowPopup(string panelName, bool modal = true)
+        public void ShowPopup(string panelName, bool closeLast = true, bool modal = true)
         {
             if (!TryGetPanel(panelName, out var panel))
             {
@@ -46,7 +46,10 @@ namespace Demo.Core
             // Parent under popupRoot to keep all popups grouped
             if (panel.transform.parent != popupRoot)
                 panel.transform.SetParent(popupRoot, worldPositionStays: false);
-
+            
+            // Try Close top popup. TODO: change this later
+            if(closeLast) CloseTopPopup();
+            
             // Activate and move to top
             panel.SetActive(true);
             panel.transform.SetAsLastSibling();
@@ -64,6 +67,18 @@ namespace Demo.Core
             popupStack.Push(popup);
             panels.Add(Id, popup);
         }
+
+        public void AddPanels(GameObject Panels, string Id)
+        {
+            if (Panels == null)
+            {
+                Debug.LogError($"[GUIView] AddPanels: popup is null.");
+            }
+            // Set GUI root as parent
+            Panels.transform.SetParent(transform, false);
+            panels.Add(Id, Panels);
+        }
+        
 
         /// <summary>
         /// Close the top-most popup if present.

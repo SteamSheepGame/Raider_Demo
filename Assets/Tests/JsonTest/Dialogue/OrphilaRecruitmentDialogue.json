@@ -4,6 +4,15 @@
       "Id": "OrphilaRecruitDialogue",
       "Type": "DialoguePopup",
       "Title": "Dialogue",
+      "AvailableActions": [
+        {
+          "id": "AddCard",
+          "trigger": "onDialogueFinish",
+          "params": {
+            "Character": "Orphila"
+          }
+        }
+      ],
       "Dialogues": [
         {
           "Id": "Dialogue_001",

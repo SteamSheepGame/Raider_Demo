@@ -10,20 +10,6 @@
         "Description": "You've arrived. The seaside town sprawls before you, all faded paint and quiet suspicion. The mission parameters are clear. Now, you need to make the town talk.",
         "NextQuestId": "Yohohohohohhohohohoh",
         "QuestState": "Ongoing"
-      },
-      {
-        "Id": "BeginerQuest1",
-        "Title": "Welcome to the sea2",
-        "Description": "Yo whats up?",
-        "NextQuestId": "Yohohohohohhohohohoh",
-        "QuestState": "Ongoing"
-      },
-      {
-        "Id": "BeginerQuest2",
-        "Title": "Welcome to the sea2",
-        "Description": "Yo whats up?",
-        "NextQuestId": "Yohohohohohhohohohoh",
-        "QuestState": "Ongoing"
       }
     ]
   }

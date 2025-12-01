@@ -53,8 +53,9 @@ namespace Demo.Core
             Transform parentCanvas = UIManager.Instance.GUIView.transform;
             var deckObject = Object.Instantiate(_deckPrefabMap[DeckKind.Character], parentCanvas);
             deckObject.name = "Character_Deck";
-            UIManager.Instance.GUIView.AddPopup(deckObject, deckObject.name);
-            UIManager.Instance.ClosePopup(deckObject.name);
+            UIManager.Instance.GUIView.AddPanels(deckObject, deckObject.name);
+            deckObject.SetActive(false);
+            // UIManager.Instance.ClosePopup(deckObject.name);
             
             CharacterDeck deck = deckObject.GetComponent<CharacterDeck>();
             // Set Position for Character Deck

@@ -4,6 +4,15 @@
       "Id": "SalazarRecruitDialogue",
       "Type": "DialoguePopup",
       "Title": "Dialogue",
+      "AvailableActions": [
+        {
+          "id": "AddCard",
+          "trigger": "onDialogueFinish",
+          "params": {
+            "Character": "Salazar"
+          }
+        }
+      ],
       "Dialogues": [
         {
           "Id": "Dialogue_001",

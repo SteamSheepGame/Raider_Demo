@@ -15,6 +15,7 @@ namespace Demo.Core
         
         private ISlot currSlot;
         private bool workCompleted = false;
+        private event Action onConfirmed;
         private void Awake()
         {
             confirmButton.onClick.AddListener(OnConfirmClicked);
@@ -44,6 +45,16 @@ namespace Demo.Core
                 }
                 
                 SpawnSlot(characterSlot);
+            }
+            
+            
+            // Bind action for onConfirm button
+            foreach (var action in locationPopupEntity.AvailableActions)
+            {
+                if (action.Trigger.Equals("onConfirm", StringComparison.OrdinalIgnoreCase))
+                {
+                    onConfirmed += () => ServiceProvider.Instance.GetService<IActionService>().ExecuteAction(action);
+                }
             }
             
         }
@@ -79,6 +90,8 @@ namespace Demo.Core
             
             currSlot.UnlockCard();
             UIManager.Instance.ClosePopup(PopupId);
+            
+            onConfirmed?.Invoke();
         }
         
         public override void OnWorkFinished()

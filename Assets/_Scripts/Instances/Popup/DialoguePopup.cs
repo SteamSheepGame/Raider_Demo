@@ -2,8 +2,9 @@
 using TMPro;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
-using UnityEngine.Apple.ReplayKit;
-using UnityEngine.UIElements;
+using System.Collections;
+using UnityEngine.UI;
+using System;
 
 namespace Demo.Core
 {
@@ -14,12 +15,13 @@ namespace Demo.Core
         [SerializeField, Required] private UnityEngine.UI.Button FirstChoiceButton;
         [SerializeField, Required] public UnityEngine.UI.Button SecondChoiceButton;
         [SerializeField, Required] private TextMeshProUGUI narration;
-        [SerializeField, Required] private RectTransform scrollAreaRect;
+        [SerializeField, Required] private RectTransform DialogueObject;
+        [SerializeField, Required] private ScrollRect ScrollRect;
         [SerializeField, Required] private GameObject dialoguePrefab;
         
 
         private Dictionary<string, DialogueBinding> Dialogues = new Dictionary<string, DialogueBinding>();
-
+        private event Action onDialogueFinish;
         private DialogueBinding currDialogue;
         public override void Bind(IEntity entity)
         {
@@ -34,6 +36,14 @@ namespace Demo.Core
             foreach (DialogueBinding dialogue in dialoguePopupEntity.Dialogues)
             {
                 Dialogues.Add(dialogue.Id, dialogue);
+            }
+            
+            foreach (var Action in dialoguePopupEntity.AvailableActions)
+            {
+                if (Action.Trigger.Equals("onDialogueFinish", StringComparison.OrdinalIgnoreCase))
+                {
+                    onDialogueFinish += () => ServiceProvider.Instance.GetService<IActionService>().ExecuteAction(Action);
+                }
             }
 
             FirstChoiceButton.onClick.AddListener(()=>Reply(0));
@@ -52,7 +62,7 @@ namespace Demo.Core
             {
                 // 生成回复
                 Replies reply = currDialogue.Replies[index];
-                GameObject dialogueInstance = Instantiate(dialoguePrefab, scrollAreaRect);
+                GameObject dialogueInstance = Instantiate(dialoguePrefab, DialogueObject);
                 TextMeshProUGUI speakerName = dialogueInstance.transform.Find("SpeakerName").GetComponent<TextMeshProUGUI>();
                 TextMeshProUGUI dialogueText = dialogueInstance.transform.Find("DialogueText").GetComponent<TextMeshProUGUI>();
                 // speakerName.text = currDialogue.Replies[0].Speaker;
@@ -88,13 +98,21 @@ namespace Demo.Core
             // 旁白
             narration.text = currentDialogue.Narration;
             // 对话者
-            GameObject dialogueInstance = Instantiate(dialoguePrefab, scrollAreaRect);
+            GameObject dialogueInstance = Instantiate(dialoguePrefab, DialogueObject);
             TextMeshProUGUI speakerName = dialogueInstance.transform.Find("SpeakerName").GetComponent<TextMeshProUGUI>();
             TextMeshProUGUI dialogueText = dialogueInstance.transform.Find("DialogueText").GetComponent<TextMeshProUGUI>();
             speakerName.text = currentDialogue.Speaker;
             dialogueText.text = currentDialogue.Text;
+            // Wait a frame → scroll to bottom
+            StartCoroutine(ScrollToBottom());
             // 回复
             StartReply();
+        }
+        
+        private IEnumerator ScrollToBottom()
+        {
+            yield return null; // wait 1 frame
+            ScrollRect.verticalNormalizedPosition = 0f;
         }
 
         private void StartReply()
@@ -104,12 +122,14 @@ namespace Demo.Core
             {
                 FirstChoiceButton.GetComponentInChildren<TextMeshProUGUI>().text = currDialogue.Replies[0]?.ButtonText;
                 FirstChoiceButton.gameObject.SetActive(true);
-            }
-
-            if (currDialogue.Replies.Count > 1)
+            } else if (currDialogue.Replies.Count > 1)
             {
                 SecondChoiceButton.GetComponentInChildren<TextMeshProUGUI>().text = currDialogue.Replies[1]?.ButtonText;
                 SecondChoiceButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                onDialogueFinish?.Invoke();
             }
         }
         

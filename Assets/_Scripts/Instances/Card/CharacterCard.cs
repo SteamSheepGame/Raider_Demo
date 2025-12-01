@@ -24,17 +24,6 @@ namespace Demo.Core
                 }
             }
         }
-
-        public override void AddToDeck()
-        {
-            if (ParentDeck != null)
-            {
-                ParentDeck.TryAdd(this);
-            }
-            else
-            {
-                //TODO
-            }
-        }
+        
     }
 }
