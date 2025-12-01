@@ -23,7 +23,16 @@
       "Title": "Cooking",
       "description": "You'll find a serviceable stove and basic kitchen equipment. It has everything you need to cook comfortably, though it's not luxurious.",
       "Characters": [],
-      "Slots": ["CookingSlot"]
+      "Slots": ["CookingSlot"],
+      "AvailableActions": [
+        {
+          "id": "AddCard",
+          "trigger": "onConfirm",
+          "params": {
+            "Character": "Food"
+          }
+        }
+      ]
     },
     {
       "id": "Maintenance",

@@ -47,6 +47,13 @@
       "Name": "Fish",
       "image": "CharacterSprites/Fish",
       "Description": "Fish: essential for survival!!"
+    },
+    {
+      "Id": "FoodCardDetail",
+      "Type": "CharacterPopup",
+      "Name": "Food",
+      "image": "CharacterSprites/FoodCard",
+      "Description": "A delicious meal! If you are at sea that is."
     }
   ]
 }
