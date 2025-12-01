@@ -3,8 +3,8 @@
     {
       "Id": "ShipNeedsFixing",
       "Type": "LocationPopup",
-      "Title": "Ship has a big hole",
-      "Description": "Amazing description",
+      "Title": "Someone New",
+      "Description": "You heard something outside, maybe you should take a look.",
       "Characters": [],
       "Slots": ["FixShipEventSlot"]
     }

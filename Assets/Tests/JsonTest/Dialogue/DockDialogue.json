@@ -17,7 +17,7 @@
       "Dialogues": [
         {
           "Id": "Dialogue_006",
-          "speaker": "Narrator",
+          "speaker": "",
           "narration": "You heard disturbances coming from the dock, maybe you should go take a look.",
           "text": "Check out the source of disturbance.",
           "replies": [
@@ -25,7 +25,7 @@
               "id": "reply_005",
               "buttonText": "There is a familiar voice you heard, go see what is going on from the deck.",
               "text": "Look out the window.",
-              "nextDialogueId": "Dialogue_007"
+              "nextDialogueId": "Dialogue_008"
             },
             {
               "id": "reply_006",
@@ -37,49 +37,50 @@
         },
         {
           "Id": "Dialogue_007",
-          "speaker": "Narrator",
-          "narration": "You saw two poorly dressed men and woman arguing about something. They stopped to look at you when they feel your gaze, and point to their card board which reads: 'LOOKING FOR WORK, price of two able hands for one.'",
-          "text": "Check out the source of disturbance.",
+          "speaker": "",
+          "text": "You saw two poorly dressed men and woman arguing about something. They stopped to look at you when they feel your gaze, and point to their card board which reads: 'LOOKING FOR WORK, price of two able hands for one.'",
+          "narration": "Check out the source of disturbance.",
           "replies": [
             {
               "id": "reply_007",
               "buttonText": "Recruit",
               "text": "Gesture them to come up to your ship.",
-              "nextDialogueId": "Dialogue_008"
+              "nextDialogueId": "Dialogue_011"
             },
             {
               "id": "reply_008",
               "buttonText": "Don't recruit",
               "text": "Move away from the window.",
-              "nextDialogueId": "Dialogue_008"
+              "nextDialogueId": "Dialogue_011"
             }
           ]
         },
         {
           "Id": "Dialogue_008",
-          "speaker": "Narrator",
-          "narration": "You get out to the deck and see Watson, an old time friend. He left the navy about 2 years ago and have not heard from him since. He told you that he heard you are looking to recruit people for a mission so he come to see if he can help with that.",
-          "text": "Check out the source of disturbance.",
+          "speaker": "",
+          "text": "You get out to the deck and see Watson, an old time friend. He left the navy about 2 years ago and have not heard from him since. He told you that he heard you are looking to recruit people for a mission so he come to see if he can help with that.",
+          "narration": "Check out the source of disturbance.",
           "replies": [
             {
               "id": "reply_009",
               "buttonText": "Recruit",
               "text": "You give he a pat on the shoulder and welcomed him. He hands you a coin, a lucky coin he says.",
               "nextDialogueId": "Dialogue_009"
+
             },
             {
               "id": "reply_010",
               "buttonText": "Don't recruit",
               "text": "You felt something is off but you couldn't tell what. You refused his offer.",
-              "nextDialogueId": "Dialogue_009"
+              "nextDialogueId": "Dialogue_010"
             }
           ]
         },
         {
           "Id": "Dialogue_009",
-          "speaker": "Narrator",
-          "narration": "You get out to the deck and see Watson, an old time friend. He left the navy about 2 years ago and have not heard from him since. He told you that he heard you are looking to recruit people for a mission so he come to see if he can help with that.",
-          "text": "You walked away from the dock",
+          "speaker": "",
+          "text": "You give he a pat on the shoulder and welcomed him. He hands you a coin, a lucky coin he says.",
+          "narration": "You walked away from the dock",
           "replies": [
           ]
         },
@@ -88,6 +89,15 @@
           "speaker": "Watson",
           "narration": "He shrugs and then hand you a coin.",
           "text": "For old time sake. Goodbye then. ",
+          "replies":[
+            
+          ]
+        },
+        {
+          "Id": "Dialogue_011",
+          "speaker": "",
+          "narration": "",
+          "text": " ",
           "replies":[
             
           ]
