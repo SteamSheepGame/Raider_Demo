@@ -4,6 +4,7 @@
       "Id": "DockDialogue1",
       "Type": "DialoguePopup",
       "Title": "Dialogue",
+      "Image": "LocationSprites/Dock",
       "AvailableActions": [
         {
           "id": "AddCard",

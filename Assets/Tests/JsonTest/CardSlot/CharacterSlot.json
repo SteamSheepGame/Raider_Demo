@@ -8,7 +8,7 @@
           "id": "OpenPopup",
           "trigger": "onFill",
           "params": {
-            "popupid": "DockDialogue1"
+            "popupid": "SalazarRecruitDialogue"
           }
                   
         }

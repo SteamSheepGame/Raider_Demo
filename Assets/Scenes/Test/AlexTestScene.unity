@@ -1245,6 +1245,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GUI
       objectReference: {fileID: 0}
+    - target: {fileID: 7032559768414282462, guid: d12fb82e780c5344d851ea2d41c18f49, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7688702209565325452, guid: d12fb82e780c5344d851ea2d41c18f49, type: 3}
       propertyPath: m_Size
       value: 1
@@ -1327,6 +1331,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1247534377}
     - target: {fileID: 4335834678944562197, guid: 7ae13bf7e4c3e514297e99db63024096, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00018310547
+      objectReference: {fileID: 0}
+    - target: {fileID: 4335834678944562197, guid: 7ae13bf7e4c3e514297e99db63024096, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -388.65887
       objectReference: {fileID: 0}
@@ -1353,6 +1361,10 @@ PrefabInstance:
     - target: {fileID: 6183322526675477881, guid: 7ae13bf7e4c3e514297e99db63024096, type: 3}
       propertyPath: m_Name
       value: HUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 6183322526675477881, guid: 7ae13bf7e4c3e514297e99db63024096, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6237336468630928807, guid: 7ae13bf7e4c3e514297e99db63024096, type: 3}
       propertyPath: m_Pivot.x

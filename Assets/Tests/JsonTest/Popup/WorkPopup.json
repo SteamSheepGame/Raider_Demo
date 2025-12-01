@@ -39,7 +39,16 @@
       "Title": "Reading",
       "description": "This place may not be much, but it's cozy enough to settle in with a book. After all, there's no better companion than a good book to fill the quiet hours.",
       "Characters": [],
-      "Slots": ["ReadingSlot"]
+      "Slots": ["ReadingSlot"],
+      "AvailableActions": [
+        {
+          "id": "AddCard",
+          "trigger": "onConfirm",
+          "params": {
+            "Character": "Abstract"
+          }
+        }
+      ]
     }
   ]
 }

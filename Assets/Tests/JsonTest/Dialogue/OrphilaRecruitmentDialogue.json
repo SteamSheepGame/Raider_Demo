@@ -4,6 +4,7 @@
       "Id": "OrphilaRecruitDialogue",
       "Type": "DialoguePopup",
       "Title": "Dialogue",
+      "Image": "CharacterSprites/OrphilaCard",
       "AvailableActions": [
         {
           "id": "AddCard",

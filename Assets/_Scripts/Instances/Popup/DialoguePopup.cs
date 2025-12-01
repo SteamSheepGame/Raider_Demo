@@ -14,10 +14,10 @@ namespace Demo.Core
         [SerializeField, Required] private TextMeshProUGUI title;
         [SerializeField, Required] private UnityEngine.UI.Button FirstChoiceButton;
         [SerializeField, Required] public UnityEngine.UI.Button SecondChoiceButton;
-        [SerializeField, Required] private TextMeshProUGUI narration;
         [SerializeField, Required] private RectTransform DialogueObject;
         [SerializeField, Required] private ScrollRect ScrollRect;
         [SerializeField, Required] private GameObject dialoguePrefab;
+        [SerializeField, Required] private Image dialogueImage;
         
 
         private Dictionary<string, DialogueBinding> Dialogues = new Dictionary<string, DialogueBinding>();
@@ -32,6 +32,8 @@ namespace Demo.Core
             {
                 Debug.LogError("LocationPopup Bind error");
             }
+            // Set Image from entity data
+            dialogueImage.sprite = TryLoadSpriteFromResources(dialoguePopupEntity.Image);
 
             foreach (DialogueBinding dialogue in dialoguePopupEntity.Dialogues)
             {
@@ -96,7 +98,15 @@ namespace Demo.Core
             FirstChoiceButton.gameObject.SetActive(false);
             SecondChoiceButton.gameObject.SetActive(false);
             // 旁白
-            narration.text = currentDialogue.Narration;
+            // narration.text = currentDialogue.Narration;
+            if (currentDialogue.Narration != "")
+            {
+                GameObject narrationInstance = Instantiate(dialoguePrefab, DialogueObject);
+                TextMeshProUGUI narratorName = narrationInstance.transform.Find("SpeakerName").GetComponent<TextMeshProUGUI>();
+                TextMeshProUGUI narratorText = narrationInstance.transform.Find("DialogueText").GetComponent<TextMeshProUGUI>();
+                narratorName.text = "Narration: ";
+                narratorText.text = currentDialogue.Narration;     
+            }
             // 对话者
             GameObject dialogueInstance = Instantiate(dialoguePrefab, DialogueObject);
             TextMeshProUGUI speakerName = dialogueInstance.transform.Find("SpeakerName").GetComponent<TextMeshProUGUI>();
@@ -122,12 +132,15 @@ namespace Demo.Core
             {
                 FirstChoiceButton.GetComponentInChildren<TextMeshProUGUI>().text = currDialogue.Replies[0]?.ButtonText;
                 FirstChoiceButton.gameObject.SetActive(true);
-            } else if (currDialogue.Replies.Count > 1)
+            } 
+            
+            if (currDialogue.Replies.Count > 1)
             {
                 SecondChoiceButton.GetComponentInChildren<TextMeshProUGUI>().text = currDialogue.Replies[1]?.ButtonText;
                 SecondChoiceButton.gameObject.SetActive(true);
             }
-            else
+            
+            if(currDialogue.Replies.Count <= 0)
             {
                 onDialogueFinish?.Invoke();
             }

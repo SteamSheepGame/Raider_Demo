@@ -4,12 +4,13 @@
       "Id": "IntroDialogue_1",
       "Type": "DialoguePopup",
       "Title": "Dialogue",
+      "Image": "CharacterSprites/CharacterCard",
       "Dialogues": [
         {
           "Id": "Dialogue_001",
           "speaker": "",
-          "text": "The morning light shine through the window. You opened your eyes but cannot seem to recall who you are or where exactly you are.",
-          "narration": "There are two letters on the table next to your bed, perhaps the words might enlighten you? '",
+          "text": "There are two letters on the table next to your bed, perhaps the words might enlighten you?",
+          "narration": "The morning light shine through the window. You opened your eyes but cannot seem to recall who you are or where exactly you are.",
           "replies": [
             {
               "id": "reply_001",

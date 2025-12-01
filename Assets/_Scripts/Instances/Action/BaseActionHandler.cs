@@ -11,8 +11,9 @@ namespace Demo.Core
                 if (string.Equals(kv.Key, key, StringComparison.OrdinalIgnoreCase))
                     return kv.Value;
             }
-            
-            throw new Exception($"Parameter '{key}' missing for action {binding.Id}");
+
+            // TODO: CHANGE LATER
+            return "";
         }
 
         public abstract void Execute(ActionBinding binding);

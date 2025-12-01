@@ -22,13 +22,5 @@ namespace Demo.Core
             characterImage.sprite = TryLoadSpriteFromResources(cEntity.Image);
         }
         
-        protected static Sprite TryLoadSpriteFromResources(string path)
-        {
-            if (string.IsNullOrWhiteSpace(path)) return null;
-            var sprite = Resources.Load<Sprite>(path);
-            if (!sprite)
-                Debug.LogWarning($"[CharacterCardDetailView] Sprite not found at Resources path: {path}");
-            return sprite;
-        }
     }
 }

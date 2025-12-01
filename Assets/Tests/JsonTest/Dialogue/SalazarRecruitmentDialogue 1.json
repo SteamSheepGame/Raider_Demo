@@ -4,12 +4,14 @@
       "Id": "SalazarRecruitDialogue",
       "Type": "DialoguePopup",
       "Title": "Dialogue",
+      "Image": "CharacterSprites/SalazarCard",
       "AvailableActions": [
         {
           "id": "AddCard",
           "trigger": "onDialogueFinish",
           "params": {
-            "Character": "Salazar"
+            "Character": "Salazar",
+            "Item": "Money"
           }
         }
       ],
