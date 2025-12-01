@@ -23,13 +23,13 @@
           "replies": [
             {
               "id": "reply_005",
-              "buttonText": "There is a familiar voice you heard, go see what is going on from the deck.",
+              "buttonText": "There is a familiar voice you heard from the deck.",
               "text": "Look out the window.",
               "nextDialogueId": "Dialogue_008"
             },
             {
               "id": "reply_006",
-              "buttonText": "You heard two people arguing, look out from the window.",
+              "buttonText": "You heard two people arguing out the window.",
               "text": "Look out the window.",
               "nextDialogueId": "Dialogue_007"
             }
